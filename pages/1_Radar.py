@@ -80,10 +80,9 @@ def main():
                 # Item selecionado acende em Verde Neon com borda grossa premium
                 st.markdown("<div style='background-color:#0f172a; border:2px solid #00ffcc; padding:11px; border-radius:6px; margin-bottom:8px; color:#00ffcc; font-weight:bold; font-size:1rem;'>" + item['label'] + "</div>", unsafe_allow_html=True)
             else:
-                # Botão nativo Streamlit customizado via CSS
+                # Botão nativo Streamlit customizado via CSS de forma linear pura
                 if st.button(item["label"], key=item["id"], use_container_width=True):
                     st.session_state.produto_radar_ativo = item["id"]
-                    st.columns(1) # Forçador de atualização linear limpa para quebrar cache
                     st.rerun()
 
     with col_direita:
