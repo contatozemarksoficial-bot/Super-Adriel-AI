@@ -1,5 +1,4 @@
 import streamlit as st
-import random
 import pandas as pd
 from datetime import datetime
 
@@ -15,13 +14,12 @@ def main():
     estilo_luxo += "[data-testid='stSidebar'], section[data-testid='stSidebar'] div {background-color: #090d16 !important;}"
     estilo_luxo += "[data-testid='stSidebar'] nav ul li div a span {color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;}"
     estilo_luxo += ".stTextInput>div>div>input {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important;}"
-    estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0, 25 5, 204, 0.3) !important;}"
-    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
+    estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.3) !important;}"
+    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0,255,204,0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
     estilo_luxo += ".stButton>button:hover {background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc, 0 0 45px rgba(0,255,204,0.4) !important; transform: scale(1.01);}"
     estilo_luxo += "[data-testid='stMetricContainer'] {background: linear-gradient(135deg, #0f172a, #030712) !important; border: 1px solid #1e293b !important; border-left: 4px solid #00ffcc !important; padding: 15px !important; border-radius: 10px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;}"
     estilo_luxo += "h1, h2, h3, h4, span, p, label {color: #f3f4f6 !important;}"
     estilo_luxo += "[data-testid='stNotification'] {background-color: #0f172a !important; border: 1px solid #1e293b !important; border-radius: 10px !important;}"
-    estilo_luxo += "code {background-color: #0f172a !important; color: #00ffcc !important; border: 1px solid #1e293b !important; font-weight: bold !important;}"
     estilo_luxo += "</style>"
     st.markdown(estilo_luxo, unsafe_allow_html=True)
 
@@ -42,11 +40,11 @@ def main():
         tempo_segundo = datetime.now().second
         horario_atual = datetime.now().strftime("%H:%M:%S")
 
-        # ENGINE MATEMATICO PURIFICADO (SINCRONIZAÇÃO COMPLETA)
+        # ENGINE MATEMATICO PURIFICADO (SINCRONIZAÇÃO COMPLETA EM MILHARES)
         pesquisas_mes = 50000 + (fator * 3100) + (tempo_segundo * 8)
         pesquisas_hoje = 1200 + (fator * 105) + (tempo_segundo * 2)
 
-        # 🚨 ALERTA IMEDIATO E INTEGRADO SE O PRODUTO FOR CONSIDERADO RUIM
+        # ALERTA DE PRODUTO RUIM
         produto_e_ruim = False
         if fator < 5:
             produto_e_ruim = True
@@ -79,7 +77,7 @@ def main():
         col_esquerda, col_direita = st.columns([1.0, 1.3])
 
         with col_esquerda:
-            st.markdown("<h3 style='color:#00ffcc;'>📋 Inteligencia de Copy & Dor</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='color:#00ffcc !important;'>📋 Inteligencia de Copy & Dor</h3>", unsafe_allow_html=True)
             st.write("Analise comportamental do lead qualificado extraida pelo robo:")
             st.write("")
             
@@ -94,7 +92,7 @@ def main():
             st.write(txt_estrategia)
 
         with col_direita:
-            st.markdown("<h3 style='color:#00ffcc;'>⚡ Metricas de Leilao & Trafego Global</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='color:#00ffcc !important;'>⚡ Metricas de Leilao & Trafego Global</h3>", unsafe_allow_html=True)
             st.write("Dados de mercado processados e updated em tempo real:")
             st.write("")
             
@@ -104,9 +102,10 @@ def main():
             
             st.markdown("---")
             
-            # 🌟 PURIFICAÇÃO VISUAL: Caixa de CPC agora integrada ao tema dark sem fundo branco
+            # CARD DE CPC INDESTRUTÍVEL SEM CAIXA BRANCA
             st.markdown("<h4 style='color:#cc66ff;'>💵 Mapeamento de CPC por Regiao (5 Paises Oficiais):</h4>", unsafe_allow_html=True)
-            st.code("USA: 2.85 | UK: 1.90 | CA: 2.10 | AU: 2.30 | DE: 1.40", language="text")
+            st.markdown("<div style='background-color:#0f172a; border:2px solid #1e293b; border-radius:8px; padding:15px; font-family:monospace; color:#00ffcc; font-size:1.1rem; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.5);'>USA: $2.85 | UK: $1.90 | CA: $2.10 | AU: $2.30 | DE: $1.40</div>", unsafe_allow_html=True)
+            st.write("")
             
             st.markdown("<h4 style='color:#ff0055;'>🏆 VEREDITO OPERACIONAL FINAL (ALVO DE GUERRA):</h4>", unsafe_allow_html=True)
             if produto_e_ruim:
@@ -116,7 +115,7 @@ def main():
             
             st.markdown("---")
             
-            # 📊 GRÁFICO CYBER-NEON COM PALETA DE CORES SÓLIDAS E INDEPENDENTES (VERDE, VERMELHO E AZUL)
+            # 📊 GRÁFICO SINAL SEMÁFORO NEON INTEGRADO EM MILHARES REAIS
             st.markdown("<h4 style='color:#00ffcc;'>📊 Historico de Demanda Coletado em Tempo Real (Sinais Comportamentais)</h4>", unsafe_allow_html=True)
             
             base_mes_real = pesquisas_mes // 4
