@@ -1,4 +1,5 @@
 import streamlit as st
+import urllib.parse
 from datetime import datetime
 
 def main():
@@ -18,11 +19,15 @@ def main():
     
     /* Elementos de entrada de dados personalizados */
     .stTextInput>div>div>input { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important; }
-    .stTextInput>div>div>input:focus { border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3) !important; }
+    .stTextInput>div>div>input:focus { border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0, 25 204, 0.3) !important; }
     
     /* Botões originais restaurados com borda cyber verde e hover ativo do seu design */
-    .stButton>button { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; width: 100% !important; height: 45px !important; box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important; transition: all 0.3s ease-in-out !important; }
+    .stButton>button { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; width: 100% !important; height: 45px !important; box-shadow: 0 0 10px rgba(0, 25 204, 0.15) !important; transition: all 0.3s ease-in-out !important; }
     .stButton>button:hover { background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc, 0 0 45px rgba(0,255,204,0.4) !important; transform: scale(1.01); }
+    
+    /* Estilização exclusiva para o botão de indicação da Hostinger */
+    .botao-referral-hostinger > div > button { background: linear-gradient(135deg, #00ffcc 0%, #0066ff 100%) !important; color: #030712 !important; border: none !important; font-weight: 900 !important; }
+    .botao-referral-hostinger > div > button:hover { box-shadow: 0 0 30px rgba(0, 255, 204, 0.6) !important; color: #030712 !important; }
     
     /* Customização estética dos contêineres nativos para integrar ao modo escuro premium */
     [data-testid="stVerticalBlockBorderWrapper"] { background-color: #0f172a !important; border: 1px solid #1e293b !important; border-radius: 10px !important; }
@@ -47,7 +52,16 @@ def main():
     st.warning(txt_rec)
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # INTERFACE DE CUSTOMIZAÇÃO DO PRODUTO (RESTAURADA TOTALMENTE)
+    # 🚀 SUA INDICAÇÃO EXCLUSIVA COMPILADA EM LINHA SEGURA
+    st.write("Contrate a sua infraestrutura com desconto Black-Label e ative a segurança SSL automática pelo portal verificado:")
+    link_indicacao_comandante = "https://www.hostinger.com/br?REFERRALCODE=VBMCONTAT7WC"
+    
+    st.markdown("<div class='botao-referral-hostinger'>", unsafe_allow_html=True)
+    st.link_button("🌐 ADQUIRIR HOSPEDAGEM HOSTINGER PREMIUM COM DESCONTO", link_indicacao_comandante)
+    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # INTERFACE DE CUSTOMIZAÇÃO DO PRODUTO (IDÊNTICO AO SEU PRINT VITORIOSO)
     st.markdown("<h3 style='color:#00ffcc;'>⚙️ Customizar Textos da sua Pré-Sell</h3>", unsafe_allow_html=True)
     prod_input = st.text_input("Insira o nome exato do produto internacional para gerar a estrutura:", value=st.session_state.campo_nome_ativo)
     
@@ -61,7 +75,7 @@ def main():
 
     # PASSO 2 - ANATOMIA DA PRÉ-SELL CONVERSIVA
     st.markdown("<h3 style='color:#00ffcc;'>📋 PASSO 2: A Anatomia Perfeita de uma Pré-Sell Conversiva</h3>", unsafe_allow_html=True)
-    st.write("Abaixo está a divisão modular da cópia estratégica focada em intenção institucional (Brand Bidding) para aprovação imediata no Google Ads:")
+    st.write("Abaixo está a divisão modular da cópia estratégica focada in intenção institucional (Brand Bidding) para aprovação imediata no Google Ads:")
     st.write("")
 
     col_esq, col_dir = st.columns(2)
@@ -123,4 +137,3 @@ def main():
             st.text_area("Copiar Veredito:", value=f"Disclaimer: This platform belongs to an independent affiliate. Every verified order processed is routed directly to the secure gateway server of {p_nome}.", height=120, key="copy_c4")
 
 if __name__ == "__main__":
-    main()
