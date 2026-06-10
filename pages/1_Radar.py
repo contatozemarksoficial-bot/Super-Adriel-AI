@@ -6,7 +6,7 @@ def main():
     # 1. CONFIGURAÇÃO PREMIUM DA INTERFACE SAAS 2026
     st.set_page_config(page_title="Radar Premium - AdrielAI", page_icon="💎", layout="wide")
 
-    # FORÇADOR ULTRA LUXO CYBER-NEON COMPILADO (IMUNE AO BUG DE PARSER)
+    # FORÇADOR ULTRA LUXO CYBER-NEON COMPILADO (IMUNE AO BUG DE PARSER DO PYTHON 3.14)
     estilo_luxo = "<style>"
     estilo_luxo += "header, [data-testid='stHeader'] {background-color: rgba(0,0,0,0) !important; background: transparent !important; display: none !important;}"
     estilo_luxo += "[data-testid='stAppViewContainer'] {padding-top: 0px !important;}"
@@ -31,7 +31,7 @@ def main():
 
     tempo_segundo = datetime.now().second
     horario_atual = datetime.now().strftime("%H:%M:%S")
-    st.write("Sistemas operando em Modo de Guerra. Varredura ativa às " + horario_atual)
+    st.write("Sistemas operando em Modo de Guerra. Varredura ativa **às** " + horario_atual)
     st.markdown("---")
 
     LISTA_PRODUTOS = [
@@ -76,6 +76,14 @@ def main():
                 st.session_state.radar_nome_ativo = nome_item
                 st.rerun()
 
+    # 🚦 ENGINE INTELIGENTE DO GRÁFICO SEMÁFORO REATIVO DE ACORDO COM O STATUS DO PRODUTO RASTREADO
+    if p_status == "ALTA":
+        cor_semaforo_real = "#00ffcc"  # Verde Neon para Alta Demanda
+        texto_status_semaforo = "🟢 STATUS SEMÁFORO: LEILÃO DE ALTA DENSIDADE COMPREENSIVA (OPORTUNIDADE DE ESCALA)"
+    else:
+        cor_semaforo_real = "#0066ff"  # Azul Cyber para Demanda Normal/Estável
+        texto_status_semaforo = "🔵 STATUS SEMÁFORO: MERCADO PERPÉTUO TRÂNQUILO (CPC ESTÁVEL E LIMPO)"
+
     with col_direita:
         st.markdown("<h3 style='color:#00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.2);'>⚡ Central de Inteligência de Mercado</h3>", unsafe_allow_html=True)
         st.header(p_nome)
@@ -88,11 +96,11 @@ def main():
         
         st.markdown("---")
         
-        # 🪐 NOVO ALINHAMENTO: Modificado de "Âncora Psicológica" para "Veredito Psicológico"
+        st.markdown(f"<div style='font-size:1.15rem; font-weight:bold; color:{cor_semaforo_real}; margin-bottom:15px;'>{texto_status_semaforo}</div>", unsafe_allow_html=True)
+        
         st.markdown("<h4 style='color:#ff0055; text-shadow: 0 0 5px rgba(255,0,85,0.2);'>❤️ Veredito Psicológico e Dor Cirúrgica do Comprador Gringo:</h4>", unsafe_allow_html=True)
         st.warning(p_dor)
         
-        # 🪐 PADRONIZADO: Mantido com a palavra Veredito Estratégico Computacional
         st.markdown("<h4 style='color:#00ffcc; text-shadow: 0 0 5px rgba(0,255,204,0.2);'>🏆 Veredito Estratégico Computacional (Google Ads / Bing Ads):</h4>", unsafe_allow_html=True)
         st.success(p_porque)
         
@@ -107,13 +115,12 @@ def main():
         meses_ano = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
         base_mes_real = p_mes // 12
         
-        # 🪐 AJUSTE DO EIXO X: Criado o DataFrame indexado textualmente pelas chaves dos meses
         sinais_valores = [int(base_mes_real + (i * 450) if i % 2 == 0 else base_mes_real - (i * 200)) for i in range(12)]
         df_comportamento = pd.DataFrame(list(zip(meses_ano, sinais_valores)), columns=["Mês", "Sinal"])
         df_comportamento.set_index("Mês", inplace=True)
         
-        cor_grafico = "#00ffcc" if p_status == "ALTA" else "#0066ff"
-        st.bar_chart(df_comportamento, y="Sinal", color=cor_grafico)
+        # 🪐 GRÁFICO SEMÁFORO COMPLETO: Agora a cor muda dinamicamente injetando a cor do semáforo real!
+        st.bar_chart(df_comportamento, y="Sinal", color=cor_semaforo_real)
 
 if __name__ == "__main__":
     main()
