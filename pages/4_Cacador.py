@@ -15,7 +15,7 @@ def main():
     estilo_luxo += "[data-testid='stSidebar'], section[data-testid='stSidebar'] div {background-color: #090d16 !important;}"
     estilo_luxo += "[data-testid='stSidebar'] nav ul li div a span {color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;}"
     estilo_luxo += ".stTextInput>div>div>input {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important;}"
-    estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3) !important;}"
+    estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.3) !important;}"
     estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
     estilo_luxo += ".stButton>button:hover {background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc, 0 0 45px rgba(0,255,204,0.4) !important; transform: scale(1.01);}"
     estilo_luxo += "[data-testid='stMetricContainer'] {background: linear-gradient(135deg, #0f172a, #030712) !important; border: 1px solid #1e293b !important; border-left: 4px solid #00ffcc !important; padding: 15px !important; border-radius: 10px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;}"
@@ -60,10 +60,10 @@ def main():
     st.info("🤖 STATUS DO ROBO: Varredura viva de lancamentos reais finalizada as " + horario_atual + " | Conexao: ClickBank, BuyGoods, Digistore24")
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # 🪐 DECLARAÇÃO DE VARIÁVEIS MATEMÁTICAS TOTALMENTE ISOLADAS E LINEARES
-    volume_base1 = 1500 + (semente_ativa * 140)
-    volume_base2 = 1100 + (semente_ativa * 110)
-    volume_base3 = 1800 + (semente_ativa * 160)
+    # DECLARAÇÃO DE VARIÁVEIS MATEMÁTICAS TOTALMENTE ISOLADAS E LINEARES
+    v1 = 1500 + (semente_ativa * 140)
+    v2 = 1100 + (semente_ativa * 110)
+    v3 = 1800 + (semente_ativa * 160)
 
     t_status1 = "QUENTE (Alta Conversao)" if semente_ativa % 2 == 0 else "EM MUTACAO (Alta Procura)"
     t_status2 = "EM ALTA (Oceano Azul)" if semente_ativa % 3 == 0 else "OPORTUNIDADE (Fundo Limpo)"
@@ -88,7 +88,7 @@ def main():
         
         df_p1 = pd.DataFrame({
             "Semanas": ["S1", "S2", "S3", "S4"], 
-            "Buscas": [volume_base1, int(volume_base1 * 1.1), int(volume_base1 * 1.3), int(volume_base1 * 1.5)]
+            "Buscas": [v1, int(v1 * 1.1), int(v1 * 1.3), int(v1 * 1.5)]
         })
         st.bar_chart(df_p1, x="Semanas", y="Buscas")
 
@@ -104,7 +104,7 @@ def main():
         
         df_p2 = pd.DataFrame({
             "Semanas": ["S1", "S2", "S3", "S4"], 
-            "Buscas": [volume_base2, int(volume_base2 * 1.05), int(volume_base2 * 1.25), int(volume_base2 * 1.4)]
+            "Buscas": [v2, int(v2 * 1.05), int(v2 * 1.25), int(v2 * 1.4)]
         })
         st.bar_chart(df_p2, x="Semanas", y="Buscas")
 
@@ -118,10 +118,9 @@ def main():
         st.write("**CPC Estimado:** USA: $" + cpc_calculado3 + " | Outros: $0.85")
         st.write("")
         
-        # 🪐 CORREÇÃO SUPREMA DA LINHA 113: Removido o operador inline Walrus que causava a queda sintática do compilador
         df_p3 = pd.DataFrame({
             "Semanas": ["S1", "S2", "S3", "S4"], 
-            "Buscas": [volume_base3, int(volume_base3 * 1.15), int(volume_base3 * 1.25), int(volume_base3 * 1.6)]
+            "Buscas": [v3, int(v3 * 1.15), int(v3 * 1.25), int(v3 * 1.6)]
         })
         st.bar_chart(df_p3, x="Semanas", y="Buscas")
 
