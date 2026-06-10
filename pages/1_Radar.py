@@ -6,16 +6,28 @@ def main():
     # 1. CONFIGURACAO PREMIUM DA INTERFACE SAAS 2026
     st.set_page_config(page_title="Radar Premium - AdrielAI", page_icon="💎", layout="wide")
 
-    # FORCADOR GLOBAL DE TEMA BLACK-LABEL CYBER-NEON E CORRECAO DO MENU LATERAL
+    # FORCADOR GLOBAL DE TEMA BLACK-LABEL CYBER-NEON E REMOCAO DA BARRA BRANCA SUPERIOR
     st.markdown("""
         <style>
+            /* 🪐 DESTRUIÇÃO DA BARRA BRANCA: Força ocultação total do cabeçalho nativo */
+            header, [data-testid="stHeader"] {
+                background-color: rgba(0,0,0,0) !important;
+                background: transparent !important;
+                display: none !important;
+            }
+            
+            /* Ajuste de margem superior para compensar a ocultação da barra */
+            [data-testid="stAppViewContainer"] {
+                padding-top: 0px !important;
+            }
+
             /* Fundo principal da aplicação */
             html, body, [data-testid="stAppViewContainer"], .stApp {
                 background-color: #030712 !important;
                 color: #f9fafb !important;
             }
             
-            /* 🚀 CORREÇÃO DO MENU LATERAL: Traz os botões de volta com estilo escuro e neon */
+            /* CORREÇÃO DO MENU LATERAL: Traz os botões de volta com estilo escuro e neon */
             [data-testid="stSidebar"], section[data-testid="stSidebar"] div {
                 background-color: #090d16 !important;
             }
@@ -36,7 +48,7 @@ def main():
             }
             .stButton>button:hover {
                 background-color: #00ffcc !important;
-                color: #030712 !important;
+                color: #030312 !important;
                 box-shadow: 0 0 15px #00ffcc !important;
             }
             h1, h2, h3, h4, span, p, label {
@@ -87,7 +99,7 @@ def main():
     paises_oficiais = ["Estados Unidos (USA)", "Reino Unido (UK)", "Canada (CA)", "Australia (AU)", "Alemanha (DE)"]
     p_pais = paises_oficiais[posicao_lista % 5]
 
-    p_dor = "Frustracao emocional extrema do comprador gringo devido ao acumulo de sintomas persistentese dores biologicas profundas associadas a " + p_nome + ", gerando esgotamento fisico cronico e bloqueando a capacidade de focar no trabalho ou manter uma rotina de alto rendimento diario."
+    p_dor = "Frustracao emotional extrema do comprador gringo devido ao acumulo de sintomas persistentese dores biologicas profundas associadas a " + p_nome + ", gerando esgotamento fisico cronico e bloqueando a capacidade de focar no trabalho ou manter uma rotina de alto rendimento diario."
     
     p_porque = "O monitoramento do robo confirma trafego massivo e qualificado de fundo de funil para " + p_nome + ". O veredicto estrategico final indica que o leilao para o pais " + p_pais + " e a melhor oportunidade operacional gringo hoje, entregando cliques mais baratos e comissao limpa com baixa concorrencia."
 
