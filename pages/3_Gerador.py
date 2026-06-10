@@ -16,8 +16,13 @@ def main():
     html, body, [data-testid="stAppViewContainer"], .stApp { background-color: #030712 !important; color: #f9fafb !important; }
     h1, h2, h3, h4, p, span, label { color: #f3f4f6 !important; font-family: 'Segoe UI', sans-serif !important; }
     .stTextInput>div>div>input { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; }
+    
+    /* Mantém o botão original com borda cyber verde e hover ativo do seu print */
     .stButton>button { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; width: 100% !important; height: 45px !important; }
     .stButton>button:hover { background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc !important; }
+    
+    /* Remove bordas cinzas nativas de formulários para manter o design limpo */
+    [data-testid="stForm"] { border: none !important; padding: 0px !important; }
     </style>
     """, unsafe_allow_html=True)
 
@@ -25,25 +30,27 @@ def main():
     st.write("Estruturação completa e inteligente de campanhas fundo de funil para o Google Ads com política antibloqueio.")
     st.markdown("---")
 
-    # 💾 ENGINE DE MEMÓRIA DE CONTROLE: Inicializa o Sugar Defender na primeira carga
-    if "ativo_pesquisado" not in st.session_state:
-        st.session_state.ativo_pesquisado = "Sugar Defender"
+    # 💾 STORAGE DE SEGURANÇA: Garante estabilidade inicial de carga de tela
+    if "global_prod_nome" not in st.session_state:
+        st.session_state.global_prod_nome = "Sugar Defender"
 
-    # 2. ENTRADA DE CONFIGURAÇÃO DA CAMPANHA (IDÊNTICO AO SEU PRINT)
-    st.markdown("<h3 style='color:#00ffcc;'>⚙️ Configuração da Oferta Gringa</h3>", unsafe_allow_html=True)
-    produto_nome = st.text_input("Insira o nome exato do produto internacional para pesquisar:", value=st.session_state.ativo_pesquisado)
-    botao_gerar = st.button("⚡ GERAR ESQUELETO DA CAMPANHA")
-    st.markdown("---")
+    # 🚀 CAPSULA DE FORMULÁRIO: Força o Streamlit a travar e processar os dados somente no clique do botão
+    with st.form("central_pesquisa_guerra"):
+        st.markdown("<h3 style='color:#00ffcc;'>⚙️ Configuração da Oferta Gringa</h3>", unsafe_allow_html=True)
+        campo_texto = st.text_input("Insira o nome exato do produto internacional para pesquisar:", value=st.session_state.global_prod_nome)
+        
+        # Botão oficial de disparo que força a atualização real do banco de dados
+        disparou_clique = st.form_submit_button("⚡ GERAR ESQUELETO DA CAMPANHA")
 
-    # Atualiza a memória permanente do robô no momento do clique físico
-    if botao_gerar and produto_nome:
-        st.session_state.ativo_pesquisado = produto_nome.strip()
+    # Muta o estado de sessão de forma síncrona no momento exato do envio do formulário
+    if disparou_clique and campo_texto:
+        st.session_state.global_prod_nome = campo_texto.strip()
 
-    # O SISTEMA AGORA TRABALHA COM A MEMÓRIA TRAVADA, IMUNE AO RESET OPERACIONAL
-    p_nome = st.session_state.ativo_pesquisado
+    # VARIÁVEL CENTRAL MASTER COMPLETAMENTE AJUSTADA E ATUALIZADA PELO BOTÃO
+    p_nome = st.session_state.global_prod_nome
     horario_atual = datetime.now().strftime("%H:%M:%S")
     
-    st.write("Sistemas operando em Modo de Guerra. Mapeamento fixado **às** " + horario_atual)
+    st.write("Sistemas operando em Modo de Guerra. Campanha estruturada **às** " + horario_atual)
     st.write("")
 
     # 🚨 SUPER BLINDAGEM CONTRA INFRAÇÕES DE POLÍTICA DO GOOGLE ADS
@@ -99,7 +106,7 @@ def main():
     st.markdown("---")
 
     # =============================================================================================================
-    # 4. CENTRAL DE PALAVRAS-CHAVE HORIZONTAIS COMPACTADAS PLANAS (IMUNE A CONGELAMENTOS)
+    # 4. CENTRAL DE PALAVRAS-CHAVE HORIZONTAIS COMPACTADAS PLANAS (IMUNE A REPETIÇÕES E RESET OPERACIONAL)
     # =============================================================================================================
     st.markdown("<h3 style='color:#00ffcc;'>🔑 Central de Engenharia de Palavras-Chave (Tráfego Blindado Completo)</h3>", unsafe_allow_html=True)
     st.write("Estrutura cirúrgica de leilão dividida por correspondências de alta conversão e barreira de cliques desqualificados:")
@@ -128,5 +135,3 @@ def main():
         st.markdown("<h4>❌ 15 Negativas (Negative)</h4>", unsafe_allow_html=True)
         st.text_area("Copiar Negativas:", value=txt_neg, height=320, key="kw_negativas")
 
-if __name__ == "__main__":
-    main()
