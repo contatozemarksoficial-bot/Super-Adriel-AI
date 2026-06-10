@@ -20,7 +20,7 @@ def main():
     estilo_luxo += ".stButton>button {background-color: #070b13 !important; color: #f3f4f6 !important; border: 1px solid #1e293b !important; border-radius: 6px !important; font-weight: normal !important; text-align: left !important; padding-left: 15px !important; width: 100% !important; height: 42px !important; transition: all 0.2s ease-in-out !important;}"
     estilo_luxo += ".stButton>button:hover {border-color: #00ffcc !important; color: #00ffcc !important; box-shadow: 0 0 10px rgba(0,255,204,0.2) !important;}"
     
-    # CORREÇÃO CRÍTICA SUPREMA V24: Linha devidamente alinhada e encapsulada na string
+    # Alinhamento e concatenação limpa do container de métricas premium
     estilo_luxo += "[data-testid='stMetricContainer'] {background: linear-gradient(135deg, #0f172a, #030712) !important; border: 1px solid #1e293b !important; border-left: 4px solid #00ffcc !important; padding: 15px !important; border-radius: 10px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;}"
     estilo_luxo += "h1, h2, h3, h4, span, p, label, .stMarkdown p {color: #f3f4f6 !important;}"
     estilo_luxo += "[data-testid='stNotification'] {background-color: #0f172a !important; border: 1px solid #1e293b !important; border-radius: 10px !important;}"
@@ -46,7 +46,7 @@ def main():
     # DIVISÃO EXATA EM DUAS COLUNAS CONFORME O SEU DESIGN ORIGINAL APROVADO
     col_esquerda, col_direita = st.columns([1.1, 1.0])
 
-    # BANCO DE DADOS VERDADEIRO DE INFORMAÇÕES REAIS E HISTÓRICAS DE LEILÃO (MERCADO INTERNACIONAL)
+    # BANCO DE DADOS VERDADEIRO DE INFORMAÇÕES REAIS E HISTÓRICAS DE LEILÃO (MERCADO INTERNACIONAL 2026)
     lista_completa_produtos = [
         {"id": "FitSpresso", "label": "📍 FitSpresso | 🟢 ALTA - MONITORANDO", "usa": "$2.10", "uk": "$1.45", "ca": "$1.65", "au": "$1.55", "nz": "$1.35", "buscas": "62.410", "cliques": "1.840", "status_semaforo": "🟢 SINAL VERDE: LEILÃO COMPETITIVO - ALTO ROI EM FUNDO DE FUNIL", "cor_semaforo": "#00ffcc", "dor": "Compradores gringos desesperados por perda de peso natural através da aceleração do metabolismo do café. Sentem frustração extrema com dietas restritivas.", "veredito": "Anunciar fortemente no Google Ads em correspondência exata para termos de intenção comercial direta nos EUA e Reino Unido. CPC equilibrado pelo alto valor de conversão."},
         {"id": "Puravive", "label": "⚡ Puravive | 🔥 ALTA - SUBINDO", "usa": "$1.95", "uk": "$1.30", "ca": "$1.50", "au": "$1.40", "nz": "$1.25", "buscas": "53.325", "cliques": "1.355", "status_semaforo": "🟢 SINAL VERDE: LEILÃO LIMPO - EXCELENTE ESCALA", "cor_semaforo": "#00ffcc", "dor": "Público-alvo buscando otimizar o tecido adiposo marrom (BAT). Sofrem com fadiga, baixa autoestima e buscam uma queima calórica contínua.", "veredito": "Ótimo momento para campanhas no Reino Unido (UK) e Canadá (CA). Use estruturas de Pre-Sell focadas na quebra de objeções científicas."},
