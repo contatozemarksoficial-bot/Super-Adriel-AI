@@ -16,7 +16,7 @@ def main():
     estilo_luxo += "[data-testid='stSidebar'] nav ul li div a span {color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;}"
     estilo_luxo += ".stTextInput>div>div>input {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important;}"
     estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.3) !important;}"
-    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
+    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0,255,204,0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
     estilo_luxo += ".stButton>button:hover {background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc, 0 0 45px rgba(0,255,204,0.4) !important; transform: scale(1.01);}"
     estilo_luxo += "[data-testid='stMetricContainer'] {background: linear-gradient(135deg, #0f172a, #030712) !important; border: 1px solid #1e293b !important; border-left: 4px solid #00ffcc !important; padding: 15px !important; border-radius: 10px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;}"
     estilo_luxo += "h1, h2, h3, h4, span, p, label {color: #f3f4f6 !important;}"
@@ -28,17 +28,19 @@ def main():
     st.write("Varredura estrita e mapeamento simultaneo de no minimo 3 ofertas reais e recentes nas plataformas gringas.")
     st.markdown("---")
 
-    # 2. CENTRAL DE ALERTAS COM MEMÓRIA DE SESSÃO ESTÁVEL
+    # 📲 CENTRAL DE ALERTAS COM MEMÓRIA DE SESSÃO ESTÁVEL
     st.markdown("<h3 style='color:#00ffcc;'>📲 Central de Notificacoes Automatizadas</h3>", unsafe_allow_html=True)
+    
     if "user_whatsapp_saved" not in st.session_state:
         st.session_state.user_whatsapp_saved = "5511999999999"
 
+    # Input estavel para salvar o numero na memoria de sessao viva do SaaS
     whats_input = st.text_input("Insira seu WhatsApp com Codigo do Pais e DDD (Ex: 5511999999999):", value=st.session_state.user_whatsapp_saved)
-    botao_salvar_telefone = st.button("💾 SALVAR CONFIGURACAO DE TELEFONE")
+    botao_salvar_whats = st.button("💾 SALVAR CONFIGURACAO DE NOTIFICACAO")
     
-    if botao_salvar_telefone:
+    if botao_salvar_whats:
         st.session_state.user_whatsapp_saved = whats_input.strip()
-        st.success("Telefone configurado com sucesso!")
+        st.success("Configuracao de notificacao salva para o terminal!")
     
     st.markdown("---")
 
@@ -51,7 +53,7 @@ def main():
     if "cacador_semente_viva" not in st.session_state:
         st.session_state.cacador_semente_viva = 15
 
-    if activar_busca:
+    if ativar_busca:
         st.session_state.cacador_semente_viva = random.randint(10, 58)
 
     semente_ativa = st.session_state.cacador_semente_viva
@@ -60,7 +62,7 @@ def main():
     st.info("🤖 STATUS DO ROBO: Varredura viva de lancamentos reais finalizada as " + horario_atual + " | Conexao: ClickBank, BuyGoods, Digistore24")
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # DECLARAÇÃO DE VARIÁVEIS MATEMÁTICAS TOTALMENTE ISOLADAS E LINEARES
+    # 🪐 DECLARAÇÃO DE VARIÁVEIS MATEMÁTICAS TOTALMENTE LINEARES E SEGURAS
     v1 = 1500 + (semente_ativa * 140)
     v2 = 1100 + (semente_ativa * 110)
     v3 = 1800 + (semente_ativa * 160)
@@ -73,7 +75,14 @@ def main():
     cpc_calculado2 = str(round(1.40 + (semente_ativa * 0.01), 2))
     cpc_calculado3 = str(round(1.15 + (semente_ativa * 0.01), 2))
 
-    # 3. CONSTRUÇÃO DO LAYOUT EM COLUNAS NATIVAS SEM ENVOLTÓRIOS COMPLEXOS
+    # Generacao antecipada dos DataFrames limpos para evitar travar o ast.parse nativo
+    lista_semanas = ["S1", "S2", "S3", "S4"]
+    
+    df_p1 = pd.DataFrame({"Semanas": lista_semanas, "Buscas": [v1, int(v1 * 1.1), int(v1 * 1.3), int(v1 * 1.5)]})
+    df_p2 = pd.DataFrame({"Semanas": lista_semanas, "Buscas": [v2, int(v2 * 1.05), int(v2 * 1.25), int(v2 * 1.4)]})
+    df_p3 = pd.DataFrame({"Semanas": lista_semanas, "Buscas": [v3, int(v3 * 1.15), int(v3 * 1.25), int(v3 * 1.6)]})
+
+    # 3. CONSTRUÇÃO DO LAYOUT EM COLUNAS NATIVAS
     c_prod1, c_prod2, c_prod3 = st.columns(3)
 
     # --- DOSSIÊ PRODUTO 1 REAL ---
@@ -85,11 +94,6 @@ def main():
         st.write("**Melhores Paises:** USA, UK, Canada, Australia, Alemanha")
         st.write("**CPC Estimado:** USA: $" + cpc_calculado1 + " | Outros: $0.95")
         st.write("")
-        
-        df_p1 = pd.DataFrame({
-            "Semanas": ["S1", "S2", "S3", "S4"], 
-            "Buscas": [v1, int(v1 * 1.1), int(v1 * 1.3), int(v1 * 1.5)]
-        })
         st.bar_chart(df_p1, x="Semanas", y="Buscas")
 
     # --- DOSSIÊ PRODUTO 2 REAL ---
@@ -101,11 +105,6 @@ def main():
         st.write("**Melhores Paises:** USA, Canada, Reino Unido, Australia, Nova Zelandia")
         st.write("**CPC Estimado:** USA: $" + cpc_calculado2 + " | Outros: $1.10")
         st.write("")
-        
-        df_p2 = pd.DataFrame({
-            "Semanas": ["S1", "S2", "S3", "S4"], 
-            "Buscas": [v2, int(v2 * 1.05), int(v2 * 1.25), int(v2 * 1.4)]
-        })
         st.bar_chart(df_p2, x="Semanas", y="Buscas")
 
     # --- DOSSIÊ PRODUTO 3 REAL ---
@@ -117,12 +116,6 @@ def main():
         st.write("**Melhores Paises:** USA, UK, Irlanda, Australia, Canada")
         st.write("**CPC Estimado:** USA: $" + cpc_calculado3 + " | Outros: $0.85")
         st.write("")
-        
-        # 🪐 CORREÇÃO CRÍTICA SUPREMA DA LINHA 115: Trocado a variável fantasma 'semente_d3' pela variável real 'v3'
-        df_p3 = pd.DataFrame({
-            "Semanas": ["S1", "S2", "S3", "S4"], 
-            "Buscas": [v3, int(v3 * 1.15), int(v3 * 1.25), int(v3 * 1.6)]
-        })
         st.bar_chart(df_p3, x="Semanas", y="Buscas")
 
     st.markdown("---")
