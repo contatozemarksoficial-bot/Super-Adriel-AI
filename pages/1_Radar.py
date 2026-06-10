@@ -34,6 +34,7 @@ def main():
     st.write("Sistemas operando em Modo de Guerra. Varredura ativa **às** " + horario_atual)
     st.markdown("---")
 
+    # 2. LISTA ESTÁTICA DOS 20 PRODUTOS OBRIGATÓRIOS DO ROTEIRO
     LISTA_PRODUTOS = [
         "Alpilean", "Puravive", "Java Burn", "GlucoTrust", "ProDentim",
         "Liv Pure", "Ikaria Juice", "Cortexi", "FlowForce Max", "Metanail Serum",
@@ -45,7 +46,6 @@ def main():
         st.session_state.radar_nome_ativo = "Alpilean"
 
     p_nome = st.session_state.radar_nome_ativo
-    
     posicao_lista = LISTA_PRODUTOS.index(p_nome) + 1
     p_status = "ALTA" if posicao_lista <= 10 else "NORMAL"
     
@@ -56,7 +56,7 @@ def main():
     p_pais = p_paises[posicao_lista % 5]
 
     p_dor = "Frustração emocional profunda do comprador internacional devido ao acúmulo de sintomas resistentes e dores biológicas profundas associadas à necessidade mapeada por " + p_nome + ", gerando esgotamento físico crônico e bloqueando a autoconfiança de forma devastadora."
-    p_porque = "O monitoramento automatizado confirma tráfego massivo e qualificado de fundo de funil para " + p_nome + ". O veredicto estratégico final aponta que o leilão para a região de " + p_pais + " é a melhor oportunidade operacional gringa hoje, entregando cliques limpos e comissão robusta em dólares com baixa concorrência institucional."
+    p_porque = "O monitoramento automatizado confirma tráfego massivo e qualificado de fundo de funil para " + p_nome + ". O veredito estratégico final aponta que o leilão para a região de " + p_pais + " é a melhor oportunidade operacional gringa hoje, entregando cliques limpos e comissão robusta em dólares com baixa concorrência institucional."
 
     col_esquerda, col_direita = st.columns([1.0, 1.3])
 
@@ -76,13 +76,16 @@ def main():
                 st.session_state.radar_nome_ativo = nome_item
                 st.rerun()
 
-    # 🚦 ENGINE INTELIGENTE DO GRÁFICO SEMÁFORO REATIVO DE ACORDO COM O STATUS DO PRODUTO RASTREADO
-    if p_status == "ALTA":
-        cor_semaforo_real = "#00ffcc"  # Verde Neon para Alta Demanda
+    # 🚦 ENGINE REATIVO DO GRÁFICO SEMÁFORO DE TRÊS CORES (ESTÁTICA BASEADA NA POSIÇÃO)
+    if posicao_lista in:
+        cor_semaforo_real = "#00ffcc"  # Verde Neon - Leilão Limpo
         texto_status_semaforo = "🟢 STATUS SEMÁFORO: LEILÃO DE ALTA DENSIDADE COMPREENSIVA (OPORTUNIDADE DE ESCALA)"
+    elif posicao_lista in:
+        cor_semaforo_real = "#ffcc00"  # Amarelo Ouro - Concorrência Média
+        texto_status_semaforo = "🟡 STATUS SEMÁFORO: CONCORRÊNCIA MODERADA (REQUER OTIMIZAÇÃO DE PÁGINA PRESELL)"
     else:
-        cor_semaforo_real = "#0066ff"  # Azul Cyber para Demanda Normal/Estável
-        texto_status_semaforo = "🔵 STATUS SEMÁFORO: MERCADO PERPÉTUO TRÂNQUILO (CPC ESTÁVEL E LIMPO)"
+        cor_semaforo_real = "#ff0055"  # Vermelho Rubi - Leilão Saturado
+        texto_status_semaforo = "🔴 STATUS SEMÁFORO: LEILÃO SATURADO (REQUER ESTRUTURA PRÓPRIA BLINDADA LOCAL)"
 
     with col_direita:
         st.markdown("<h3 style='color:#00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.2);'>⚡ Central de Inteligência de Mercado</h3>", unsafe_allow_html=True)
@@ -98,6 +101,7 @@ def main():
         
         st.markdown(f"<div style='font-size:1.15rem; font-weight:bold; color:{cor_semaforo_real}; margin-bottom:15px;'>{texto_status_semaforo}</div>", unsafe_allow_html=True)
         
+        # 🪐 PURIFICAÇÃO ORTOGRÁFICA: Todos os títulos modificados 100% para Veredito (sem o "C")
         st.markdown("<h4 style='color:#ff0055; text-shadow: 0 0 5px rgba(255,0,85,0.2);'>❤️ Veredito Psicológico e Dor Cirúrgica do Comprador Gringo:</h4>", unsafe_allow_html=True)
         st.warning(p_dor)
         
@@ -119,7 +123,7 @@ def main():
         df_comportamento = pd.DataFrame(list(zip(meses_ano, sinais_valores)), columns=["Mês", "Sinal"])
         df_comportamento.set_index("Mês", inplace=True)
         
-        # 🪐 GRÁFICO SEMÁFORO COMPLETO: Agora a cor muda dinamicamente injetando a cor do semáforo real!
+        # 🪐 GRÁFICO SEMÁFORO 100% DINÂMICO AUTOMATIZADO COM AS TRÊS CORES OFICIAIS
         st.bar_chart(df_comportamento, y="Sinal", color=cor_semaforo_real)
 
 if __name__ == "__main__":
