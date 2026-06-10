@@ -2,23 +2,20 @@ import streamlit as st
 from datetime import datetime
 
 def main():
-    # 1. CONFIGURAÇÃO PREMIUM DA INTERFACE SAAS 2026 (RECOLHIMENTO FORÇADO DE BARRA)
-    st.set_page_config(page_title="Gerador Premium - AdrielAI", layout="wide", initial_sidebar_state="collapsed")
+    # 1. CONFIGURAÇÃO PREMIUM DA INTERFACE SAAS 2026
+    st.set_page_config(page_title="Gerador Premium - AdrielAI", layout="wide", initial_sidebar_state="expanded")
 
-    # INJEÇÃO SUPREMA: SUMIÇO DA LATERAL BRANCA E PRESERVAÇÃO DAS CORES ESCURAS DO DESIGN
+    # INJEÇÃO PREMIUM: EMBUTIMENTO DO TEMA ESCURO DE CINEMA IMUNE A TELA BRANCA
     st.markdown("""
     <style>
-    /* Ocultação total e cirúrgica da barra lateral sem quebrar rotas do Python 3.14 */
-    [data-testid="stSidebar"], section[data-testid="stSidebar"], .stSidebar { display: none !important; width: 0px !important; visibility: hidden !important; }
+    [data-testid="stSidebar"], section[data-testid="stSidebar"], .stSidebar { background-color: #090d16 !important; border-right: 1px solid #1e293b !important; }
+    [data-testid="stSidebarNav"] { background-color: #090d16 !important; }
+    [data-testid="stSidebar"] nav ul li div a span { color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important; }
     [data-testid="stHeader"] { display: none !important; background: transparent !important; }
     .block-container { padding-top: 1rem !important; max-width: 100% !important; }
-    
-    /* Configuração escuro premium do chassi */
     html, body, [data-testid="stAppViewContainer"], .stApp { background-color: #030712 !important; color: #f9fafb !important; }
     h1, h2, h3, h4, p, span, label { color: #f3f4f6 !important; font-family: 'Segoe UI', sans-serif !important; }
     .stTextInput>div>div>input { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; }
-    
-    /* Botões originais com borda cyber verde e hover reativo */
     .stButton>button { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; width: 100% !important; height: 45px !important; }
     .stButton>button:hover { background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc !important; }
     </style>
@@ -28,103 +25,108 @@ def main():
     st.write("Estruturação completa e inteligente de campanhas fundo de funil para o Google Ads com política antibloqueio.")
     st.markdown("---")
 
-    # 2. ENTRADA DE CONFIGURAÇÃO DA CAMPANHA (MODELO IGUAL AO SEU PRINT)
+    # 💾 ENGINE DE MEMÓRIA DE CONTROLE: Inicializa o Sugar Defender na primeira carga
+    if "ativo_pesquisado" not in st.session_state:
+        st.session_state.ativo_pesquisado = "Sugar Defender"
+
+    # 2. ENTRADA DE CONFIGURAÇÃO DA CAMPANHA (IDÊNTICO AO SEU PRINT)
     st.markdown("<h3 style='color:#00ffcc;'>⚙️ Configuração da Oferta Gringa</h3>", unsafe_allow_html=True)
-    produto_nome = st.text_input("Insira o nome exato do produto internacional para pesquisar:", value="Sugar Defender")
-    
-    # O botão físico verde com bordas cyber controla a renderização de forma síncrona e segura
+    produto_nome = st.text_input("Insira o nome exato do produto internacional para pesquisar:", value=st.session_state.ativo_pesquisado)
     botao_gerar = st.button("⚡ GERAR ESQUELETO DA CAMPANHA")
     st.markdown("---")
 
-    # O SISTEMA OBEDECE SE O BOTÃO FOR PASSADO E CLICADO COM SUCESSO
+    # Atualiza a memória permanente do robô no momento do clique físico
     if botao_gerar and produto_nome:
-        p_nome = produto_nome.strip()
-        horario_atual = datetime.now().strftime("%H:%M:%S")
+        st.session_state.ativo_pesquisado = produto_nome.strip()
+
+    # O SISTEMA AGORA TRABALHA COM A MEMÓRIA TRAVADA, IMUNE AO RESET OPERACIONAL
+    p_nome = st.session_state.ativo_pesquisado
+    horario_atual = datetime.now().strftime("%H:%M:%S")
+    
+    st.write("Sistemas operando em Modo de Guerra. Mapeamento fixado **às** " + horario_atual)
+    st.write("")
+
+    # 🚨 SUPER BLINDAGEM CONTRA INFRAÇÕES DE POLÍTICA DO GOOGLE ADS
+    txt_politica = "Atenção Afiliado: Esta campanha foi gerada sob as diretrizes estritas do Google Ads Compliance. Os títulos evitam promessas milagrosas de cura, termos médicos proibidos e caixas de texto com pontuações apelativas. Toda a estrutura foi focada em intenção institucional (Brand Bidding), garantindo aprovação imediata do anúncio e risco zero de suspensão de conta."
+    st.markdown("<h4 style='color:#ff0055;'>🛡️ ÍNDICE DE BLINDAGEM ANTIBLOQUEIO GOOGLE</h4>", unsafe_allow_html=True)
+    st.warning(txt_politica)
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # 3. CONSTRUÇÃO DO LAYOUT EM DUAS COLUNAS PRINCIPAIS
+    col_esquerda, col_direita = st.columns([1.0, 1.0])
+
+    with col_esquerda:
+        st.markdown("<h3 style='color:#00ffcc;'>📌 Títulos do Anúncio (Análise por Extenso)</h3>", unsafe_allow_html=True)
+        st.write("Selecione e copie para as Headlines do Google Ads:")
         
-        st.write("Sistemas operando em Modo de Guerra. Campanha estruturada **às** " + horario_atual)
-        st.write("")
+        t1 = f"Buy {p_nome} Official"[:30]
+        t2 = f"{p_nome} Official Store"[:30]
+        t3 = f"{p_nome} Discount Today"[:30]
+        t4 = f"Order {p_nome} Online"[:30]
+        t5 = f"{p_nome} Special Offer"[:30]
+        t6 = f"Get {p_nome} Original"[:30]
+        t7 = f"{p_nome} Website Official"[:30]
+        t8 = f"Exclusive {p_nome} Deal"[:30]
 
-        # 🚨 SUPER BLINDAGEM CONTRA INFRAÇÕES DE POLÍTICA DO GOOGLE ADS
-        txt_politica = "Atenção Afiliado: Esta campanha foi gerada sob as diretrizes estritas do Google Ads Compliance. Os títulos evitam promessas milagrosas de cura, termos médicos proibidos e caixas de texto com pontuações apelativas. Toda a estrutura foi focada em intenção institucional (Brand Bidding), garantindo aprovação imediata do anúncio e risco zero de suspensão de conta."
-        st.markdown("<h4 style='color:#ff0055;'>🛡️ ÍNDICE DE BLINDAGEM ANTIBLOQUEIO GOOGLE</h4>", unsafe_allow_html=True)
-        st.warning(txt_politica)
+        st.text_input(f"Título 1 ({len(t1)}/30):", value=t1, key="gen_t1")
+        st.text_input(f"Título 2 ({len(t2)}/30):", value=t2, key="gen_t2")
+        st.text_input(f"Título 3 ({len(t3)}/30):", value=t3, key="gen_t3")
+        st.text_input(f"Título 4 ({len(t4)}/30):", value=t4, key="gen_t4")
+        st.text_input(f"Título 5 ({len(t5)}/30):", value=t5, key="gen_t5")
+        st.text_input(f"Título 6 ({len(t6)}/30):", value=t6, key="gen_t6")
+        st.text_input(f"Título 7 ({len(t7)}/30):", value=t7, key="gen_t7")
+        st.text_input(f"Título 8 ({len(t8)}/30):", value=t8, key="gen_t8")
+        
         st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#00ffcc;'>🛣️ Caminhos de Exibição (Display URL)</h3>", unsafe_allow_html=True)
+        st.text_input("Caminho 1 (Máx 15):", value="OfficialSite", key="path_1")
+        st.text_input("Caminho 2 (Máx 15):", value="DiscountNow", key="path_2")
 
-        # 3. CONSTRUÇÃO DO LAYOUT EM DUAS COLUNAS PRINCIPAIS
-        col_esquerda, col_direita = st.columns([1.0, 1.0])
+    with col_direita:
+        st.markdown("<h3 style='color:#cc66ff;'>📝 Descrições do Anúncio (Máx 90 Caracteres)</h3>", unsafe_allow_html=True)
+        st.write("Copie para as Descriptions do Google Ads:")
+        
+        d1 = f"Get {p_nome} directly from the official website. Enjoy safe delivery and special discount today."[:90]
+        d2 = f"Order your {p_nome} bottles today with free standard shipping and exclusive money back guarantee."[:90]
+        d3 = f"Shop {p_nome} original supplement online. Secure your package now before the stock runs out!"[:90]
+        d4 = f"Check the official review of {p_nome} and claim your discount code directly on our secure portal."[:90]
 
-        with col_esquerda:
-            st.markdown("<h3 style='color:#00ffcc;'>📌 Títulos do Anúncio (Análise por Extenso)</h3>", unsafe_allow_html=True)
-            st.write("Selecione e copie para as Headlines do Google Ads:")
-            
-            t1 = f"Buy {p_nome} Official"[:30]
-            t2 = f"{p_nome} Official Store"[:30]
-            t3 = f"{p_nome} Discount Today"[:30]
-            t4 = f"Order {p_nome} Online"[:30]
-            t5 = f"{p_nome} Special Offer"[:30]
-            t6 = f"Get {p_nome} Original"[:30]
-            t7 = f"{p_nome} Website Official"[:30]
-            t8 = f"Exclusive {p_nome} Deal"[:30]
+        st.text_input(f"Descrição 1 ({len(d1)}/90):", value=d1, key="gen_d1")
+        st.text_input(f"Descrição 2 ({len(d2)}/90):", value=d2, key="gen_d2")
+        st.text_input(f"Descrição 3 ({len(d3)}/90):", value=d3, key="gen_d3")
+        st.text_input(f"Descrição 4 ({len(d4)}/90):", value=d4, key="gen_d4")
 
-            st.text_input(f"Título 1 ({len(t1)}/30):", value=t1, key="gen_t1")
-            st.text_input(f"Título 2 ({len(t2)}/30):", value=t2, key="gen_t2")
-            st.text_input(f"Título 3 ({len(t3)}/30):", value=t3, key="gen_t3")
-            st.text_input(f"Título 4 ({len(t4)}/30):", value=t4, key="gen_t4")
-            st.text_input(f"Título 5 ({len(t5)}/30):", value=t5, key="gen_t5")
-            st.text_input(f"Título 6 ({len(t6)}/30):", value=t6, key="gen_t6")
-            st.text_input(f"Título 7 ({len(t7)}/30):", value=t7, key="gen_t7")
-            st.text_input(f"Título 8 ({len(t8)}/30):", value=t8, key="gen_t8")
-            
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown("<h3 style='color:#00ffcc;'>🛣️ Caminhos de Exibição (Display URL)</h3>", unsafe_allow_html=True)
-            st.text_input("Caminho 1 (Máx 15):", value="OfficialSite", key="path_1")
-            st.text_input("Caminho 2 (Máx 15):", value="DiscountNow", key="path_2")
+    st.markdown("---")
 
-        with col_direita:
-            st.markdown("<h3 style='color:#cc66ff;'>📝 Descrições do Anúncio (Máx 90 Caracteres)</h3>", unsafe_allow_html=True)
-            st.write("Copie para as Descriptions do Google Ads:")
-            
-            d1 = f"Get {p_nome} directly from the official website. Enjoy safe delivery and special discount today."[:90]
-            d2 = f"Order your {p_nome} bottles today with free standard shipping and exclusive money back guarantee."[:90]
-            d3 = f"Shop {p_nome} original supplement online. Secure your package now before the stock runs out!"[:90]
-            d4 = f"Check the official review of {p_nome} and claim your discount code directly on our secure portal."[:90]
+    # =============================================================================================================
+    # 4. CENTRAL DE PALAVRAS-CHAVE HORIZONTAIS COMPACTADAS PLANAS (IMUNE A CONGELAMENTOS)
+    # =============================================================================================================
+    st.markdown("<h3 style='color:#00ffcc;'>🔑 Central de Engenharia de Palavras-Chave (Tráfego Blindado Completo)</h3>", unsafe_allow_html=True)
+    st.write("Estrutura cirúrgica de leilão dividida por correspondências de alta conversão e barreira de cliques desqualificados:")
+    st.write("")
 
-            st.text_input(f"Descrição 1 ({len(d1)}/90):", value=d1, key="gen_d1")
-            st.text_input(f"Descrição 2 ({len(d2)}/90):", value=d2, key="gen_d2")
-            st.text_input(f"Descrição 3 ({len(d3)}/90):", value=d3, key="gen_d3")
-            st.text_input(f"Descrição 4 ({len(d4)}/90):", value=d4, key="gen_d4")
+    c_solta, c_aspas, c_colchete, c_negativa = st.columns(4)
 
-        st.markdown("---")
+    txt_broad = f"{p_nome} official store\n{p_nome} buy online\n{p_nome} best price\n{p_nome} where to buy\n{p_nome} purchase original\n{p_nome} order discount\n{p_nome} secure package\n{p_nome} promo code\n{p_nome} retailer store\n{p_nome} sale online\n{p_nome} safest site\n{p_nome} lowest cost\n{p_nome} supply near me\n{p_nome} get bottles\n{p_nome} shop discount"
+    txt_phrase = f'"{p_nome} official website"\n"{p_nome} supplement reviews"\n"{p_nome} ingredients list"\n"{p_nome} customer warning"\n"{p_nome} independent review"\n"{p_nome} real side effects"\n"{p_nome} fda approved status"\n"{p_nome} capsules directions"\n"{p_nome} weight loss drops"\n"{p_nome} complaints check"\n"{p_nome} scam alert report"\n"{p_nome} shipping tracking"\n"{p_nome} refund policy guarantee"\n"{p_nome} clinical studies results"\n"{p_nome} formula benefits"'
+    txt_exact = f"[{p_nome} brand bidding]\n[{p_nome} manufacturer direct]\n[{p_nome} authorized seller]\n[{p_nome} coupon code 2026]\n[{p_nome} moneyback guarantee]\n[{p_nome} exclusive offer matinal]\n[{p_nome} certified pure check]\n[{p_nome} stock availability]\n[{p_nome} wholesale price package]\n[{p_nome} official link gate]\n[{p_nome} verified checkout page]\n[{p_nome} vip client portal]\n[{p_nome} one time payment]\n[{p_nome} secured order processing]\n[{p_nome} original product checkout]"
+    txt_neg = "free\nscam\nfake\ncomplaints\nside effects\namazon\nebay\nwalmart\nbad review\nalternative\ningredients\ncancer\ndiabetes\nmedical doctor\nhoax"
 
-        # =============================================================================================================
-        # 3. CENTRAL DE PALAVRAS-CHAVE EXCLUSIVAS (4 COLUNAS HORIZONTAIS COMPACTADAS PLANAS SEM ERROS DE RECUO)
-        # =============================================================================================================
-        st.markdown("<h3 style='color:#00ffcc;'>🔑 Central de Engenharia de Palavras-Chave (Tráfego Blindado Completo)</h3>", unsafe_allow_html=True)
-        st.write("Estrutura cirúrgica de leilão dividida por correspondências de alta conversão e barreira de cliques desqualificados:")
-        st.write("")
+    with c_solta:
+        st.markdown("<h4>🟢 15 Amplas (Broad)</h4>", unsafe_allow_html=True)
+        st.text_area("Copiar Soltas:", value=txt_broad, height=320, key="kw_soltas")
 
-        c_solta, c_aspas, c_colchete, c_negativa = st.columns(4)
+    with c_aspas:
+        st.markdown("<h4>🔵 15 Frases (Phrase)</h4>", unsafe_allow_html=True)
+        st.text_area("Copiar Frases:", value=txt_phrase, height=320, key="kw_aspas")
 
-        txt_broad = f"{p_nome} official store\n{p_nome} buy online\n{p_nome} best price\n{p_nome} where to buy\n{p_nome} purchase original\n{p_nome} order discount\n{p_nome} secure package\n{p_nome} promo code\n{p_nome} retailer store\n{p_nome} sale online\n{p_nome} safest site\n{p_nome} lowest cost\n{p_nome} supply near me\n{p_nome} get bottles\n{p_nome} shop discount"
-        txt_phrase = f'"{p_nome} official website"\n"{p_nome} supplement reviews"\n"{p_nome} ingredients list"\n"{p_nome} customer warning"\n"{p_nome} independent review"\n"{p_nome} real side effects"\n"{p_nome} fda approved status"\n"{p_nome} capsules directions"\n"{p_nome} weight loss drops"\n"{p_nome} complaints check"\n"{p_nome} scam alert report"\n"{p_nome} shipping tracking"\n"{p_nome} refund policy guarantee"\n"{p_nome} clinical studies results"\n"{p_nome} formula benefits"'
-        txt_exact = f"[{p_nome} brand bidding]\n[{p_nome} manufacturer direct]\n[{p_nome} authorized seller]\n[{p_nome} coupon code 2026]\n[{p_nome} moneyback guarantee]\n[{p_nome} exclusive offer matinal]\n[{p_nome} certified pure check]\n[{p_nome} stock availability]\n[{p_nome} wholesale price package]\n[{p_nome} official link gate]\n[{p_nome} verified checkout page]\n[{p_nome} vip client portal]\n[{p_nome} one time payment]\n[{p_nome} secured order processing]\n[{p_nome} original product checkout]"
-        txt_neg = "free\nscam\nfake\ncomplaints\nside effects\namazon\nebay\nwalmart\nbad review\nalternative\ningredients\ncancer\ndiabetes\nmedical doctor\nhoax"
+    with c_colchete:
+        st.markdown("<h4>🔴 15 Exatas (Exact)</h4>", unsafe_allow_html=True)
+        st.text_area("Copiar Exatas:", value=txt_exact, height=320, key="kw_colchetes")
 
-        with c_solta:
-            st.markdown("<h4>🟢 15 Amplas (Broad)</h4>", unsafe_allow_html=True)
-            st.text_area("Copiar Soltas:", value=txt_broad, height=320, key="kw_soltas")
-
-        with c_aspas:
-            st.markdown("<h4>🔵 15 Frases (Phrase)</h4>", unsafe_allow_html=True)
-            st.text_area("Copiar Frases:", value=txt_phrase, height=320, key="kw_aspas")
-
-        with c_colchete:
-            st.markdown("<h4>🔴 15 Exatas (Exact)</h4>", unsafe_allow_html=True)
-            st.text_area("Copiar Exatas:", value=txt_exact, height=320, key="kw_colchetes")
-
-        with c_negativa:
-            st.markdown("<h4>❌ 15 Negativas (Negative)</h4>", unsafe_allow_html=True)
-            st.text_area("Copiar Negativas:", value=txt_neg, height=320, key="kw_negativas")
+    with c_negativa:
+        st.markdown("<h4>❌ 15 Negativas (Negative)</h4>", unsafe_allow_html=True)
+        st.text_area("Copiar Negativas:", value=txt_neg, height=320, key="kw_negativas")
 
 if __name__ == "__main__":
     main()
