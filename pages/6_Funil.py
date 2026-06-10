@@ -38,7 +38,7 @@ def main():
     
     sugestoes_pool = ["FitSpresso", "Weight Loss Supplement", "How to lose weight fast"]
     semente_tempo = datetime.now().second
-    sugestao_ativa = congestao_sugestao := sugestoes_pool[semente_tempo % 3]
+    sugestao_ativa = sugestoes_pool[semente_tempo % 3]
 
     produto_analisado = st.text_input("Insira o Nome do Produto, Beneficio ou Termo que deseja anunciar:", value=sugestao_ativa)
     
@@ -126,19 +126,9 @@ def main():
         st.markdown("<h3 style='color:#00ffcc; margin:0; text-align:center;'>📐 Arquitetura do Funil Viva</h3>", unsafe_allow_html=True)
         st.write("")
         
-        # 🪐 CONSTRUÇÃO GEOMÉTRICA DA PIRÂMIDE INVERTIDA REATIVA VIA CSS PURO LINHA POR LINHA
+        # CONSTRUÇÃO GEOMÉTRICA DA PIRÂMIDE INVERTIDA REATIVA VIA CSS PURO 
         html_funil = "<div style='display:flex; flex-direction:column; align-items:center; width:100%; font-family:monospace;'>"
-        
-        # Bloco do Topo do Funil
         html_funil += "<div style='width:90%; background:linear-gradient(90deg, #111827, #1f2937); border:" + borda_topo + "; opacity:" + opacidade_topo + "; padding:12px; margin-bottom:6px; border-radius:6px; text-align:center; color:#ff0055; font-weight:bold;'>🎯 TOPO DO FUNIL (Sintomas / Dor Ampla)</div>"
-        
-        # Seta indicadora intermediária
         html_funil += "<div style='color:#f3f4f6; margin-bottom:6px; font-size:1.1rem;'>▼</div>"
-        
-        # Bloco do Meio do Funil
         html_funil += "<div style='width:65%; background:linear-gradient(90deg, #111827, #1f293b); border:" + borda_meio + "; opacity:" + opacidade_meio + "; padding:12px; margin-bottom:6px; border-radius:6px; text-align:center; color:#0066ff; font-weight:bold;'>🛡️ MEIO DO FUNIL (Soluções / Presell)</div>"
-        
-        # Seta indicadora intermediária
         html_funil += "<div style='color:#f3f4f6; margin-bottom:6px; font-size:1.1rem;'>▼</div>"
-        
-        # Bloco do Fundo do Funil
