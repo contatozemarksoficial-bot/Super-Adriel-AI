@@ -7,79 +7,24 @@ def main():
     # 1. CONFIGURACAO PREMIUM DA INTERFACE SAAS 2026
     st.set_page_config(page_title="Radar Premium - AdrielAI", page_icon="💎", layout="wide")
 
-    # FORCADOR GLOBAL DE TEMA BLACK-LABEL COM BRILHO NEON NAS BORDAS E TEXTOS
-    st.markdown("""
-        <style>
-            header, [data-testid="stHeader"] {
-                background-color: rgba(0,0,0,0) !important;
-                background: transparent !important;
-                display: none !important;
-            }
-            [data-testid="stAppViewContainer"] {
-                padding-top: 0px !important;
-            }
-            html, body, [data-testid="stAppViewContainer"], .stApp {
-                background-color: #020617 !important;
-                color: #f9fafb !important;
-            }
-            [data-testid="stSidebar"], section[data-testid="stSidebar"] div {
-                background-color: #070a13 !important;
-            }
-            [data-testid="stSidebar"] nav ul li div a span {
-                color: #00ffcc !important;
-                font-weight: bold !important;
-                text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;
-            }
-            
-            /* Botões Laterais com Brilho Pulsante */
-            .stButton>button {
-                background-color: #0b1329 !important;
-                color: #00ffcc !important;
-                border: 2px solid #00ffcc !important;
-                border-radius: 8px !important;
-                font-weight: bold !important;
-                box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important;
-                transition: all 0.3s ease-in-out !important;
-            }
-            .stButton>button:hover {
-                background-color: #00ffcc !important;
-                color: #020617 !important;
-                box-shadow: 0 0 20px #00ffcc, 0 0 40px rgba(0,255,204,0.3) !important;
-                transform: scale(1.01);
-            }
-            
-            /* Customização das Caixas de Métricas Neon */
-            [data-testid="stMetricContainer"] {
-                background: linear-gradient(135deg, #0f172a, #020617) !important;
-                border: 1px solid #1e293b !important;
-                border-left: 4px solid #00ffcc !important;
-                padding: 15px !important;
-                border-radius: 10px !important;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
-            }
-            
-            h1, h2, h3, h4, span, p, label {
-                color: #f3f4f6 !important;
-            }
-            h1 {
-                color: #00ffcc !important;
-                text-shadow: 0 0 15px rgba(0,255,204,0.4) !important;
-            }
-            [data-testid="stNotification"] {
-                background-color: #0b1329 !important;
-                border: 1px solid #1e293b !important;
-                border-radius: 10px !important;
-            }
-            code {
-                background-color: #0f172a !important;
-                color: #00ffcc !important;
-                border: 1px solid #1e293b !important;
-                font-weight: bold !important;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+    # FORCADOR ULTRA LUXO CYBER-NEON COMPILADO (IMUNE AO BUG DO PYTHON 3.14)
+    estilo_luxo = "<style>"
+    estilo_luxo += "header, [data-testid='stHeader'] {background-color: rgba(0,0,0,0) !important; background: transparent !important; display: none !important;}"
+    estilo_luxo += "[data-testid='stAppViewContainer'] {padding-top: 0px !important;}"
+    estilo_luxo += "html, body, [data-testid='stAppViewContainer'], .stApp {background-color: #030712 !important; color: #f9fafb !important;}"
+    estilo_luxo += "[data-testid='stSidebar'], section[data-testid='stSidebar'] div {background-color: #090d16 !important;}"
+    estilo_luxo += "[data-testid='stSidebar'] nav ul li div a span {color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;}"
+    estilo_luxo += ".stTextInput>div>div>input {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important;}"
+    estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.3) !important;}"
+    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0,255,204,0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
+    estilo_luxo += ".stButton>button:hover {background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc, 0 0 45px rgba(0,255,204,0.4) !important; transform: scale(1.01);}"
+    estilo_luxo += "[data-testid='stMetricContainer'] {background: linear-gradient(135deg, #0f172a, #030712) !important; border: 1px solid #1e293b !important; border-left: 4px solid #00ffcc !important; padding: 15px !important; border-radius: 10px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;}"
+    estilo_luxo += "h1, h2, h3, h4, span, p, label {color: #f3f4f6 !important;}"
+    estilo_luxo += "[data-testid='stNotification'] {background-color: #0f172a !important; border: 1px solid #1e293b !important; border-radius: 10px !important;}"
+    estilo_luxo += "</style>"
+    st.markdown(estilo_luxo, unsafe_allow_html=True)
 
-    st.markdown('<h1 style="font-size: 2.6rem; font-weight: 900; margin-bottom: 5px;">💎 RADAR DE PRODUTOS PERPETUOS</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 style="font-size: 2.6rem; font-weight: 900; color: #00ffcc; text-shadow: 0 0 15px rgba(0,255,204,0.4); margin-bottom: 5px;">💎 RADAR DE PRODUTOS PERPETUOS</h1>', unsafe_allow_html=True)
     st.write("Varredura automatizada e mapeamento operacional de ofertas de alta tracao nas plataformas gringas.")
 
     # Marcador de Varredura Viva Baseado no Relogio Atual do Servidor
@@ -136,7 +81,7 @@ def main():
                 st.rerun()
 
     with col_direita:
-        st.markdown("<h3 style='color:#00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.2);'>⚡ Central de Inteligencia de Mercado</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#00ffcc ; text-shadow: 0 0 10px rgba(0,255,204,0.2);'>⚡ Central de Inteligencia de Mercado</h3>", unsafe_allow_html=True)
         st.header(p_nome)
         st.write("Classificacao: " + p_status + " - MONITORAMENTO ATIVO DO ROBO V5")
         st.write("")
@@ -153,9 +98,11 @@ def main():
         st.markdown("<h4 style='color:#00ffcc; text-shadow: 0 0 5px rgba(0,255,204,0.2);'>🏆 Veredito Estrategico Convincente (Onde anunciar e por que):</h4>", unsafe_allow_html=True)
         st.info(p_pais + " - " + p_porque)
         
-        st.markdown("<h4 style='color:#cc66ff; text-shadow: 0 0 5px rgba(204,102,255,0.2);'>💵 Mapeamento de CPC por Regiao (5 Paises Oficiais):</h4>", unsafe_allow_html=True)
-        cpc_base_dinamico = round(1.85 + (posicao_lista * 0.08), 2)
-        st.code("USA: $" + str(cpc_base_dinamico) + " | UK: $1.90 | CA: $2.10 | AU: $2.30 | DE: $1.40", language="text")
+        # 🪐 CORREÇÃO DO CPC NO RADAR: Removido st.code nativo e injetado card escuro imune a caixa branca
+        st.markdown("<h4 style='color:#cc66ff;'>💵 Mapeamento de CPC por Regiao (5 Paises Oficiais):</h4>", unsafe_allow_html=True)
+        cpc_base_dinamico = str(round(1.85 + (posicao_lista * 0.08), 2))
+        st.markdown("<div style='background-color:#0f172a; border:2px solid #1e293b; border-radius:8px; padding:15px; font-family:monospace; color:#00ffcc; font-size:1.1rem; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.5);'>USA: $" + cpc_base_dinamico + " | UK: $1.90 | CA: $2.10 | AU: $2.30 | DE: $1.40</div>", unsafe_allow_html=True)
+        st.write("")
         
         st.markdown("---")
         
