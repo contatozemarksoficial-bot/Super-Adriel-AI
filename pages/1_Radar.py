@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
+import urllib.parse
 
 def main():
     # 1. CONFIGURACAO PREMIUM DA INTERFACE SAAS 2026
@@ -33,7 +34,6 @@ def main():
     botao_pesquisa_ativo = st.button("🚀 EXECUTAR VARREDURA AO VIVO")
     st.markdown("---")
 
-    # MODIFICAÇÃO AQUI: Agora as informações só aparecem ao clicar no botão
     if botao_pesquisa_ativo and produto_digitado:
         nome_prod = produto_digitado.strip()
         fator = len(nome_prod)
@@ -71,7 +71,7 @@ def main():
         pais_vencedor = paises_pool[(fator + tempo_segundo) % 5]
 
         txt_beneficios = f"Os beneficios principais do {nome_prod} consistem na imediata estabilizacao dos indices metabolicos profundos do organismo, promovendo a desinflamacao celular acelerada de tecidos sobrecarregados, eliminando a retencao de liquidos de forma venda e devolvendo o vigor organico total."
-        txt_dor = f"O comprador gringo que busca por {nome_prod} sofre com uma dor psicologica severa gerada pela falta de resultados em treatments anteriores, acumulando cansaco cronico, indisposicao matinal e bloqueio biologico profundo."
+        txt_dor = f"O comprador gringo que busca por {nome_prod} sofre com uma dor psicologica severa gerada pela falta de resultados em tratamentos anteriores, acumulando cansaco cronico, indisposicao matinal e bloqueio biologico profundo."
         txt_estrategia = f"A melhor estrategia operacional para o {nome_prod} e subir uma campanha estruturada focada no canal recomendado. Monte uma estrutura de Pre-Sell ou pagina de Review nativo direto, blindando o link de afiliado contra bloqueios e focando fundo de funil."
 
         # 4. CONSTRUÇÃO DO LAYOUT EM DUAS COLUNAS PRINCIPAIS LUXO
@@ -109,10 +109,22 @@ def main():
             st.write("")
             
             st.markdown("<h4 style='color:#ff0055;'>🏆 VEREDITO OPERACIONAL FINAL (ALVO DE GUERRA):</h4>", unsafe_allow_html=True)
+            
+            # GERAÇÃO DO TEXTO E DO ÁUDIO DO VEREDITO
             if produto_e_ruim:
-                st.error(f"RECOMENDACAO ADRIEL-AI: NAO SUBA CAMPANHA PARA {nome_prod} NESTE MOMENTO.")
+                texto_veredito = f"RECOMENDACAO ADRIEL-AI: NAO SUBA CAMPANHA PARA {nome_prod} NESTE MOMENTO."
+                texto_falado = f"Atenção afiliado. Recomendação Adriel A I. Não suba campanha para o produto {nome_prod} neste momento."
+                st.error(texto_veredito)
             else:
-                st.success(f"RECOMENDACAO ADRIEL-AI: PRODUTO VALIDADO. FOCO TOTAL EM {pais_vencedor} VIA {canal_ideal}.")
+                texto_veredito = f"RECOMENDACAO ADRIEL-AI: PRODUTO VALIDADO. FOCO TOTAL EM {pais_vencedor} VIA {canal_ideal}."
+                texto_falado = f"Atenção afiliado. Recomendação Adriel A I. Produto {nome_prod} validado. Foco total em {pais_vencedor}."
+                st.success(texto_veredito)
+            
+            # Mecanismo de fala injetado via HTML Invisível no navegador
+            texto_codificado = urllib.parse.quote(texto_falado)
+            url_audio = f"https://google.com{texto_codificado}"
+            html_audio = f'<iframe src="{url_audio}" allow="autoplay" style="display:none"></iframe>'
+            st.markdown(html_audio, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
