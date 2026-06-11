@@ -5,15 +5,33 @@ import time
 
 def main():
     # 1. CONFIGURAÇÃO DE ELITE (Design Cinema Dark)
-    st.set_page_config(page_title="Adriel-AI Pro | Central de Comando", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="Adriel-AI Pro | Gestão", layout="wide", initial_sidebar_state="expanded")
 
-    # 2. CSS DE ALTA PERFORMANCE - PROTOCOLO CONEXÃO TOTAL
+    # 2. CSS DE ALTA PERFORMANCE - PROTOCOLO BLACK TOTAL (MATA O BRANCO NA LATERAL)
     st.markdown("""
     <style>
+        /* Remove cabeçalho */
         header, [data-testid="stHeader"] { visibility: hidden; height: 0px; }
-        .stApp { background-color: #010409 !important; }
         
-        /* Logo e Header */
+        /* FUNDO TOTAL PRETO (Corpo e Lateral) */
+        .stApp, [data-testid="stAppViewContainer"], 
+        [data-testid="stSidebar"], [data-testid="stSidebarNav"] {
+            background-color: #010409 !important;
+        }
+
+        /* TEXTO DA LATERAL EM BRANCO NÍTIDO */
+        [data-testid="stSidebarNav"] span { 
+            color: #ffffff !important; 
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+        }
+        
+        /* Borda fina para separar a lateral do corpo */
+        [data-testid="stSidebar"] {
+            border-right: 1px solid #1e293b !important;
+        }
+
+        /* Logo e Badges */
         .main-logo {
             color: #ffffff; font-size: 2.8rem; font-weight: 900; letter-spacing: -2px;
             display: flex; align-items: center; gap: 15px;
@@ -25,7 +43,7 @@ def main():
             font-size: 0.9rem; font-weight: 900; box-shadow: 0 0 20px #00ffcc88;
         }
 
-        /* PLATAFORMAS LINCADAS (Badges Clicáveis) */
+        /* PLATAFORMAS LINCADAS */
         .plat-link { text-decoration: none !important; color: inherit !important; }
         .plat-badge {
             padding: 12px 15px; border-radius: 8px; border: 1px solid #1e293b;
@@ -62,11 +80,6 @@ def main():
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.4); transition: 0.3s;
         }
         .btn-checkout-real:hover { background: #ffffff; box-shadow: 0 0 40px #00ffcc; transform: scale(1.02); }
-
-        /* Tabela Base 44 */
-        .sub-table { width: 100%; border-collapse: collapse; color: #f9fafb; margin-top: 20px; }
-        .sub-table th { background: #0d1117; color: #00ffcc; padding: 15px; text-align: left; border-bottom: 2px solid #1e293b; font-size: 0.7rem; text-transform: uppercase; }
-        .sub-table td { padding: 15px; border-bottom: 1px solid #1e293b; font-size: 0.8rem; vertical-align: top; line-height: 1.6; }
     </style>
     """, unsafe_allow_html=True)
 
@@ -75,14 +88,11 @@ def main():
     with c_logo:
         st.markdown('<div class="main-logo">🤖 Adriel-AI <span class="badge-pro">PRO</span></div>', unsafe_allow_html=True)
     with c_live:
-        st.markdown(f'<div style="text-align:right; padding-top:15px;"><div style="color:#00ffcc; font-weight:800; font-size:0.8rem;"><span style="display:inline-block; width:8px; height:8px; background:#00ffcc; border-radius:50%; margin-right:5px; animation:pulse 1.5s infinite;"></span> {random.randint(1840, 2350):,} MEMBROS ATIVOS NA ÁREA</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="text-align:right; padding-top:15px;"><div style="color:#00ffcc; font-weight:800; font-size:0.8rem;"><span style="display:inline-block; width:8px; height:8px; background:#00ffcc; border-radius:50%; margin-right:5px; animation:pulse 1.5s infinite;"></span> {random.randint(1840, 2350):,} OPERADORES ATIVOS NA ÁREA</div></div>', unsafe_allow_html=True)
 
-    # --- PLATAFORMAS LINCADAS (FUNCIONANDO AGORA) ---
+    # --- PLATAFORMAS LINCADAS (CONECTADAS) ---
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown('<p style="color:#94a3b8; font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;">🔌 Gateway de Conexão Síncrona (Clique para Acessar)</p>', unsafe_allow_html=True)
     lp1, lp2, lp3, lp4, lp5 = st.columns(5)
-    
-    # Links reais das plataformas
     platas = [
         ("CLICKBANK", "https://clickbank.com", lp1),
         ("BUYGOODS", "https://buygoods.com", lp2),
@@ -90,7 +100,6 @@ def main():
         ("STRIPE DASH", "https://stripe.com", lp4),
         ("HOSTINGER VPS", "https://hostinger.com", lp5)
     ]
-    
     for name, link, col in platas:
         with col:
             st.markdown(f'<a href="{link}" target="_blank" class="plat-link"><div class="plat-badge"><div class="online-dot"></div> {name}</div></a>', unsafe_allow_html=True)
@@ -100,20 +109,19 @@ def main():
     m1, m2, m3, m4 = st.columns(4)
     with m1: st.markdown('<div class="metric-container"><div class="m-label">Faturamento Geral</div><div class="m-value">R$ 142.580</div></div>', unsafe_allow_html=True)
     with m2: st.markdown('<div class="metric-container"><div class="m-label">Licenças Ativas</div><div class="m-value">2.105</div></div>', unsafe_allow_html=True)
-    with m3: st.markdown('<div class="metric-container"><div class="m-label">MRR (Recorrência)</div><div class="m-value">R$ 104.200</div></div>', unsafe_allow_html=True)
+    with m3: st.markdown('<div class="metric-container"><div class="m-label">Recorrência (MRR)</div><div class="m-value">R$ 104.200</div></div>', unsafe_allow_html=True)
     with m4: st.markdown('<div class="metric-container" style="border-bottom-color:#ff0055;"><div class="m-label">Taxa de Churn</div><div class="m-value">0.8%</div></div>', unsafe_allow_html=True)
 
     st.markdown('<div style="height:1px; background:linear-gradient(90deg, transparent, #1e293b, transparent); margin:40px 0;"></div>', unsafe_allow_html=True)
 
-    # --- NOVAS LICENÇAS (BOTOES COM LINKS REAIS) ---
-    st.markdown('<h3 style="color:white; margin-bottom:25px; letter-spacing:1px;">💳 ADESÃO ÀS NOVAS LICENÇAS ACESSÍVEIS</h3>', unsafe_allow_html=True)
+    # --- NOVAS LICENÇAS ACESSÍVEIS ---
+    st.markdown('<h3 style="color:white; margin-bottom:25px; letter-spacing:1px;">💳 ADESÃO ÀS NOVAS LICENÇAS SUPREMAS</h3>', unsafe_allow_html=True)
     p1, p2, p3 = st.columns(3)
     
-    # Substitua pelos seus links reais de checkout
     licencas = [
-        {"n": "PLANO MENSAL START", "v": "R$ 47", "desc": "Acesso ao Módulo 1 (Radar) + Tendências. Validação imediata.", "link": "https://seu-link-de-pagamento.com"},
-        {"n": "PLANO MENSAL PRO", "v": "R$ 97", "desc": "Start + Módulo RSA (45 Keywords) + Arquiteto de Funil.", "link": "https://seu-link-de-pagamento.com"},
-        {"n": "PLANO ELITE MASTER", "v": "R$ 197", "desc": "ACESSO TOTAL ILIMITADO + Construtor Pre-Sell Hostinger.", "link": "https://seu-link-de-pagamento.com"}
+        {"n": "PLANO MENSAL START", "v": "R$ 47", "desc": "Liberação do Módulo 1 (Radar) + Tendências. Acesso básico para validação imediata.", "link": "#"},
+        {"n": "PLANO MENSAL PRO", "v": "R$ 97", "desc": "Start + Módulo RSA (45 Keywords) + Arquiteto de Funil. Foco em quem já escala.", "link": "#"},
+        {"n": "PLANO ELITE MASTER", "v": "R$ 197", "desc": "ACESSO TOTAL ILIMITADO + Construtor Pre-Sell Hostinger. O poder máximo do robô.", "link": "#"}
     ]
 
     cols = [p1, p2, p3]
@@ -128,28 +136,7 @@ def main():
             </div>
             """, unsafe_allow_html=True)
 
-    # --- GESTÃO DE MEMBROS (BASE 44) ---
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    st.markdown('<h3 style="color:#00ffcc; margin-bottom:20px; letter-spacing:1px;">🛡️ CONTROLE DE ACESSO BASE 44</h3>', unsafe_allow_html=True)
-    
-    membros = [
-        {"u": "Comandante Marques", "p": "Elite Master", "s": "ATIVO", "j": "Proprietário do sistema. Acesso total aos servidores de tráfego frio e integração síncrona com Hostinger. O robô opera com 100% de prioridade para este terminal."},
-        {"u": "Operador Base 44 #108", "p": "Mensal Pro", "s": "ATIVO", "j": "Especialista em Brand Bidding USA. Utiliza a inteligência do Adriel-AI para dominar o fundo de funil com CTR de 12% nas redes gringas."}
-    ]
-
-    t_html = """<table class="sub-table"><thead><tr><th>Operador / Licença</th><th>Justificativa Estratégica IA</th><th>Controle Servidor</th></tr></thead><tbody>"""
-    for m in membros:
-        t_html += f"""
-        <tr>
-            <td><b style='color:white;'>{m['u']}</b><br><span style='color:#00ffcc; font-size:0.7rem;'>PLANO: {m['p']}</span></td>
-            <td style='color:#94a3b8; font-style:italic;'>"{m['j']}"</td>
-            <td>
-                <span style='color:#00ffcc; font-weight:800;'>● {m['s']}</span><br><br>
-                <button style='background:transparent; border:1px solid #ff0055; color:#ff0055; padding:5px 10px; border-radius:4px; font-size:0.6rem; font-weight:800; cursor:pointer;'>BLOQUEAR ACESSO</button>
-            </td>
-        </tr>"""
-    t_html += "</tbody></table>"
-    st.markdown(t_html, unsafe_allow_html=True)
+    st.markdown("<br><br><p style='color:#475569; font-size:0.6rem; text-align:center;'>SISTEMA BLINDADO - REBOOT DE CACHE RECOMENDADO APÓS ATUALIZAÇÃO</p>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
