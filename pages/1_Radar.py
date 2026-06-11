@@ -47,11 +47,7 @@ def main():
 
         # ALERTA DE PRODUTO RUIM
         produto_e_ruim = False
-        if fator < 5:
-            produto_e_ruim = True
         if "teste" in nome_prod.lower():
-            produto_e_ruim = True
-        if tempo_segundo % 4 == 0:
             produto_e_ruim = True
 
         if produto_e_ruim:
@@ -62,13 +58,9 @@ def main():
         st.write(f"Sistemas operando em Modo de Guerra. Varredura viva para o produto **{nome_prod}** às " + horario_atual)
         st.write("")
 
-        # DEFINICAO DE CANAIS E DESTINO FINAL
+        # TRAVADO APENAS EM GOOGLE ADS E CANADA
         canal_ideal = "Google Ads (Rede de Pesquisa)"
-        if (fator % 2 == 0):
-            canal_ideal = "Facebook Ads (VSL)"
-            
-        paises_pool = ["Estados Unidos (USA)", "Reino Unido (UK)", "Canada (CA)", "Australia (AU)", "Alemanha (DE)"]
-        pais_vencedor = paises_pool[(fator + tempo_segundo) % 5]
+        pais_vencedor = "Canadá (CA)"
 
         txt_beneficios = f"Os beneficios principais do {nome_prod} consistem na imediata estabilizacao dos indices metabolicos profundos do organismo, promovendo a desinflamacao celular acelerada de tecidos sobrecarregados, eliminando a retencao de liquidos de forma venda e devolvendo o vigor organico total."
         txt_dor = f"O comprador gringo que busca por {nome_prod} sofre com uma dor psicologica severa gerada pela falta de resultados em tratamentos anteriores, acumulando cansaco cronico, indisposicao matinal e bloqueio biologico profundo."
@@ -110,15 +102,11 @@ def main():
             
             st.markdown("<h4 style='color:#ff0055;'>🏆 VEREDITO OPERACIONAL FINAL (ALVO DE GUERRA):</h4>", unsafe_allow_html=True)
             
-            # GERAÇÃO DO TEXTO E DO ÁUDIO DO VEREDITO
-            if produto_e_ruim:
-                texto_veredito = f"RECOMENDACAO ADRIEL-AI: NAO SUBA CAMPANHA PARA {nome_prod} NESTE MOMENTO."
-                texto_falado = f"Atenção afiliado. Recomendação Adriel A I. Não suba campanha para o produto {nome_prod} neste momento."
-                st.error(texto_veredito)
-            else:
-                texto_veredito = f"RECOMENDACAO ADRIEL-AI: PRODUTO VALIDADO. FOCO TOTAL EM {pais_vencedor} VIA {canal_ideal}."
-                texto_falado = f"Atenção afiliado. Recomendação Adriel A I. Produto {nome_prod} validado. Foco total em {pais_vencedor}."
-                st.success(texto_veredito)
+            # TEXTOS ATUALIZADOS APENAS COM GOOGLE ADS
+            texto_veredito = f"RECOMENDACAO ADRIEL-AI: Para o produto {nome_prod}, o melhor país absoluto para anunciar agora é o Canadá (CA), utilizando o Google Ads para máxima conversão."
+            texto_falado = f"Para o produto {nome_prod}, o melhor país absoluto para anunciar agora é o Canadá, utilizando o Google Ads para máxima conversão."
+            
+            st.success(texto_veredito)
             
             # Mecanismo de fala injetado via HTML Invisível no navegador
             texto_codificado = urllib.parse.quote(texto_falado)
