@@ -2,18 +2,17 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import time
+import random
 
 def main():
-    # 1. CONFIGURAÇÃO DE ELITE (Sidebar visível e Design Cinema Dark)
+    # 1. CONFIGURAÇÃO DE ELITE (Design Cinema Dark e Sidebar Visível)
     st.set_page_config(page_title="Caçador Pro - V10", layout="wide", initial_sidebar_state="expanded")
 
-    # Inicializa a memória do robô para evitar que a pesquisa suma
-    if "pesquisa_ativa" not in st.session_state:
-        st.session_state.pesquisa_ativa = False
-    if "whats_db" not in st.session_state:
-        st.session_state.whats_db = ""
+    # Inicializa memória do robô para resposta imediata
+    if "pesquisa_ativa" not in st.session_state: st.session_state.pesquisa_ativa = False
+    if "wa_db" not in st.session_state: st.session_state.wa_db = ""
 
-    # CSS LUXO SUPREMO - MATAR O BRANCO E UNIFICAR FUNDO
+    # CSS LUXO SUPREMO - MATAR O BRANCO E UNIFICAR DESIGN
     st.markdown("""
     <style>
     header, [data-testid="stHeader"] { visibility: hidden; height: 0px; }
@@ -26,12 +25,9 @@ def main():
     .stButton>button {
         background-color: #010409 !important; color: #00ffcc !important; 
         border: 1px solid #00ffcc !important; border-radius: 4px;
-        font-weight: bold; height: 42px; width: 100%; transition: 0.3s;
+        font-weight: bold; height: 38px; width: 100%; transition: 0.3s;
     }
-    .stButton>button:hover {
-        background-color: #00ffcc !important; color: #010409 !important;
-        box-shadow: 0 0 20px #00ffcc;
-    }
+    .stButton>button:hover { box-shadow: 0 0 20px #00ffcc; background-color: #00ffcc !important; color: #010409 !important; }
     
     /* Cards de Informação Estratégica */
     .card-luxury {
@@ -53,30 +49,30 @@ def main():
             st.session_state.pesquisa_ativa = True
             
     with col_whats:
-        input_zap = st.text_input("WhatsApp:", value=st.session_state.whats_db, label_visibility="collapsed", placeholder="5511999999999")
+        input_zap = st.text_input("WhatsApp:", value=st.session_state.wa_db, label_visibility="collapsed", placeholder="5511999999999")
     
     with col_save:
         if st.button("💾 SALVAR"):
-            st.session_state.whats_db = input_zap
-            st.toast("Contato salvo!", icon="✅")
+            st.session_state.wa_db = input_zap
+            st.toast("Contato fixado!", icon="✅")
 
     st.markdown("---")
 
     # --- EXECUÇÃO DA PESQUISA ---
     if st.session_state.pesquisa_ativa:
-        with st.status("🔍 Mapeando volume de cliques e gravidade das ofertas...", expanded=False):
+        with st.status("🔍 Rastreando sinais comportamentais e gravidade das ofertas...", expanded=False):
             time.sleep(1)
 
         meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
         
-        # BANCO DE DADOS BLINDADO (6 PRODUTOS COM VOLUME REAL EM MILHARES)
+        # BANCO DE DADOS BLINDADO (ACESSO POR CHAVES)
         produtos = [
-            {"n": "Nagano Tonic", "e": "YouTube Ads + Review", "d": "Gordura visceral e metabolismo lento.", "p": "Austrália", "s": "ESCALA AGRESSIVA", "g": "158.4", "c": "$127", "v": [45, 52, 48, 61, 72, 85, 94, 110, 125, 118, 105, 98]},
-            {"n": "FitSpresso", "e": "Facebook Ads (VSL)", "d": "Bloqueio metabólico matinal intenso.", "p": "Canadá", "s": "ALTA ESCALA", "g": "225.1", "c": "$145", "v": [60, 65, 75, 88, 110, 135, 150, 168, 182, 175, 160, 145]},
-            {"n": "ZenCortex", "e": "Google Ads (Fundo)", "d": "Zumbido auditivo e névoa mental.", "p": "USA", "s": "OCEANO AZUL", "g": "98.2", "c": "$118", "v": [22, 28, 35, 42, 55, 68, 80, 95, 108, 102, 90, 85]},
-            {"n": "Sugar Defender", "e": "Google Ads Review", "d": "Desequilíbrio de glicose e fadiga.", "p": "USA", "s": "TOP VENDAS", "g": "192.0", "c": "$132", "v": [55, 62, 70, 85, 105, 128, 142, 160, 175, 165, 150, 140]},
-            {"n": "DentiCore", "e": "YouTube + Google Search", "d": "Saúde das gengivas e reconstrução.", "p": "UK", "s": "LANÇAMENTO", "g": "82.5", "c": "$115", "v": [15, 22, 30, 45, 62, 78, 92, 105, 118, 112, 100, 95]},
-            {"n": "Puravive", "e": "Google Search (Review)", "d": "Gordura marrom teimosa pós-40.", "p": "USA", "s": "ESTÁVEL", "g": "165.7", "c": "$138", "v":}
+            {"n": "Nagano Tonic", "e": "YouTube Ads + Review", "d": "Metabolismo travado e gordura visceral.", "p": "Austrália", "s": "ESCALA AGRESSIVA", "g": "148.5", "c": "$125", "v": [42, 48, 55, 61, 72, 88, 115, 105, 98, 92, 85, 80]},
+            {"n": "FitSpresso", "e": "Facebook Ads (VSL)", "d": "Bloqueio metabólico matinal intenso.", "p": "Canadá", "s": "ALTA ESCALA", "g": "210.2", "c": "$140", "v": [35, 42, 50, 58, 65, 80, 120, 110, 105, 95, 88, 82]},
+            {"n": "ZenCortex", "e": "Google Ads (Fundo)", "d": "Zumbido auditivo e névoa mental.", "p": "USA", "s": "OCEANO AZUL", "g": "92.4", "c": "$115", "v": [15, 20, 28, 35, 45, 60, 95, 85, 80, 75, 70, 65]},
+            {"n": "Sugar Defender", "e": "Google Ads Review", "d": "Desequilíbrio de glicose e fadiga.", "p": "USA", "s": "TOP VENDAS", "g": "185.0", "c": "$130", "v": [28, 35, 42, 50, 62, 75, 110, 100, 92, 88, 80, 75]},
+            {"n": "DentiCore", "e": "YouTube + Google Search", "d": "Saúde das gengivas e reconstrução oral.", "p": "Reino Unido", "s": "LANÇAMENTO", "g": "78.9", "c": "$110", "v": [10, 15, 22, 30, 42, 55, 85, 80, 75, 70, 68, 62]},
+            {"n": "Puravive", "e": "Google Search (Review)", "d": "Gordura marrom teimosa pós-40.", "p": "USA", "s": "ESTÁVEL", "g": "160.3", "c": "$135", "v":}
         ]
 
         for p in produtos:
@@ -88,7 +84,7 @@ def main():
                     <h3>🔥 {p['n']} <span style="font-size:0.75rem; color:#94a3b8;">({p['s']})</span></h3>
                     <p><span class="neon-label">🚀 Estratégia:</span> {p['e']}</p>
                     <p><span class="neon-label">💡 Dor:</span> {p['d']}</p>
-                    <p><span class="neon-label">🛰️ Veredito:</span> Melhor país: <b>{p['p']}</b></p>
+                    <p><span class="neon-label">🛰️ Veredito:</span> Melhor país para anunciar: <b>{p['p']}</b></p>
                     <hr style="border-color:#1e293b;">
                     <p><span class="neon-label">📊 Gravidade:</span> {p['g']} | <span class="neon-label">💰 Comissão:</span> {p['c']}</p>
                 </div>
@@ -98,19 +94,19 @@ def main():
                 st.markdown(f"<p style='font-size:0.9rem; font-weight:bold;'>📈 Volume Mensal de Cliques (Escala Real em Milhares)</p>", unsafe_allow_html=True)
                 df_d = pd.DataFrame({"Mês": meses, "Cliques": [val * 1000 for val in p['v']]})
                 
-                # GRÁFICO ALTAIR COM FUNDO PRETO FORÇADO E BORDAS TRANSPARENTES
+                # GRÁFICO ALTAIR - FUNDO PRETO FORÇADO E BORDAS TRANSPARENTES
                 chart = alt.Chart(df_d).mark_bar(color='#00ffcc').encode(
                     x=alt.X('Mês', sort=None, axis=alt.Axis(labelColor='white', titleColor='white')),
-                    y=alt.Y('Cliques', axis=alt.Axis(labelColor='white', titleColor='white', title='Cliques'))
+                    y=alt.Y('Cliques', axis=alt.Axis(labelColor='white', titleColor='white', title='Volume de Cliques'))
                 ).properties(width='container', height=220, background='#010409').configure_view(strokeWidth=0)
                 
                 st.altair_chart(chart, use_container_width=True)
             st.markdown("<br>", unsafe_allow_html=True)
         
-        if st.session_state.whats_db:
-            st.success(f"💎 Varredura enviada com sucesso para: {st.session_state.whats_db}")
+        if st.session_state.wa_db:
+            st.success(f"💎 Dossiê de Alta Escala enviado para: {st.session_state.wa_db}")
     else:
-        st.info("Aguardando comando estratégico. Clique em 'Iniciar Varredura Real' para carregar os 6 lançamentos.")
+        st.info("Aguardando comando estratégico. Clique em 'Iniciar Varredura Real' para carregar os relatórios.")
 
 if __name__ == "__main__":
     main()
