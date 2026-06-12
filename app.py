@@ -1,92 +1,91 @@
 import streamlit as st
+import pandas as pd
 import random
 
 # 1. CONFIGURAÇÃO DE ELITE
-st.set_page_config(page_title="Adriel-AI Pro | Core", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Adriel-AI Pro", layout="wide", initial_sidebar_state="expanded")
 
-# 2. CSS MASTER - PROTOCOLO "SETH VISUAL" (Círculo Brilhante e Chassi Negro)
+# 2. CSS MASTER - BLACK TOTAL (MATA O BRANCO E CORRIGE TELA)
 st.markdown("""
 <style>
+    /* FUNDO TOTAL PRETO */
     header, [data-testid="stHeader"] { visibility: hidden; height: 0px; }
-    .stApp { background-color: #010409 !important; }
+    .stApp, [data-testid="stSidebar"], [data-testid="stSidebarNav"], [data-testid="stAppViewContainer"] {
+        background-color: #010409 !important;
+    }
 
-    /* Estilização da Sidebar em Botões */
+    /* ESCONDE MENU PADRÃO */
     [data-testid="stSidebarNav"] { display: none; }
-    [data-testid="stSidebar"] { background-color: #010409 !important; border-right: 1px solid #1e293b !important; }
+    [data-testid="stSidebar"] { border-right: 1px solid #1e293b !important; }
+    
+    /* MENU DE BOTÕES DA LATERAL */
+    .sidebar-menu { display: flex; flex-direction: column; gap: 8px; padding: 15px; }
     .menu-btn {
-        display: flex; align-items: center; gap: 12px; padding: 12px; margin: 8px 15px;
+        display: flex; align-items: center; gap: 12px; padding: 12px;
         background: #0d1117; border: 1px solid #1e293b; border-radius: 8px;
         color: #ffffff !important; text-decoration: none !important;
         font-weight: 700; font-size: 0.75rem; text-transform: uppercase; transition: 0.3s;
     }
     .menu-btn:hover { border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 204, 0.2); }
+    .icon-n { color: #00ffcc; text-shadow: 0 0 8px #00ffcc; font-size: 1.1rem; }
 
-    /* EFEITO DO NÚCLEO (O CÍRCULO DO PRINT) */
-    .core-container {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        padding: 60px 0; margin-top: 20px;
-    }
-    .ai-core {
-        width: 180px; height: 180px;
-        background: #010409;
-        border-radius: 50%;
-        border: 2px solid #00ffcc;
-        box-shadow: 0 0 60px rgba(0, 255, 204, 0.4), inset 0 0 30px rgba(0, 255, 204, 0.2);
-        margin-bottom: 30px;
-        animation: breath 4s infinite ease-in-out;
-    }
-    @keyframes breath { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+    /* BADGES SUPERIORES */
+    .plat-bar { display: flex; gap: 10px; margin-bottom: 20px; }
+    .plat-item { flex: 1; background: #0d1117; border: 1px solid #1e293b; padding: 10px; border-radius: 6px; text-align: center; color: #f9fafb; font-size: 0.6rem; font-weight: 800; text-decoration: none !important; }
+    .plat-item:hover { border-color: #00ffcc; }
 
-    .core-text { color: #ffffff; font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; text-align: center; }
-    .core-sub { color: #00ffcc; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; }
-    .core-detail { color: #475569; font-size: 0.8rem; margin-top: 5px; }
-
-    /* BARRA DE PESQUISA ESTILO CHAT (RODAPÉ) */
-    .chat-input-container {
-        position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-        width: 60%; background: #0d1117; border: 1px solid #1e293b;
-        padding: 15px; border-radius: 15px; display: flex; align-items: center;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    /* CARD CENTRAL */
+    .welcome-box {
+        border: 1px solid #1e293b; padding: 40px; border-radius: 25px;
+        background: linear-gradient(145deg, #0d1117 0%, #010409 100%);
+        text-align: center; margin-top: 20px; border-top: 5px solid #00ffcc;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.7);
     }
 </style>
 """, unsafe_allow_html=True)
 
-# --- SIDEBAR (MODULOS) ---
+# --- CONSTRUÇÃO DA SIDEBAR (NAVEGAÇÃO NA MESMA ABA) ---
 with st.sidebar:
-    st.markdown('<div style="color:white; font-size:1.6rem; font-weight:900; padding:20px;">🤖 Adriel-AI <span style="color:#00ffcc;">Pro</span></div>', unsafe_allow_html=True)
+    st.markdown('<div style="color:white; font-size:1.8rem; font-weight:900; padding:20px; letter-spacing:-1px;">🤖 Adriel-AI <span style="color:#00ffcc;">Pro</span></div>', unsafe_allow_html=True)
+    st.markdown('<p style="color:#475569; font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:2px; margin-left:20px;">Comandos</p>', unsafe_allow_html=True)
+    
+    # ATENÇÃO: Verifique se o nome após href= é o nome real da sua página no Streamlit
     st.markdown("""
     <div class="sidebar-menu">
-        <a href="/" class="menu-btn">🏠 DASHBOARD</a>
-        <a href="Radar" class="menu-btn">📡 RADAR ELITE</a>
-        <a href="Auditor" class="menu-btn">🕵️ AUDITOR IA</a>
-        <a href="RSA" class="menu-btn">✍️ GERADOR RSA</a>
-        <a href="Cacador" class="menu-btn">🎯 CAÇADOR V10</a>
-        <a href="Funil" class="menu-btn">📐 ARQUITETO</a>
-        <a href="Assinantes" class="menu-btn">💎 ASSINANTES</a>
+        <a href="/" target="_self" class="menu-btn"><span class="icon-n">🏠</span> DASHBOARD</a>
+        <a href="Radar" target="_self" class="menu-btn"><span class="icon-n">📡</span> 1. RADAR</a>
+        <a href="Auditor" target="_self" class="menu-btn"><span class="icon-n">🕵️</span> 2. AUDITOR</a>
+        <a href="RSA" target="_self" class="menu-btn"><span class="icon-n">✍️</span> 3. GERADOR RSA</a>
+        <a href="Cacador" target="_self" class="menu-btn"><span class="icon-n">🎯</span> 4. CAÇADOR</a>
+        <a href="Presell" target="_self" class="menu-btn"><span class="icon-n">📄</span> 5. PRE-SELL</a>
+        <a href="Funil" target="_self" class="menu-btn"><span class="icon-n">📐</span> 6. FUNIL</a>
+        <a href="Assinantes" target="_self" class="menu-btn"><span class="icon-n">💎</span> ASSINANTES</a>
     </div>
     """, unsafe_allow_html=True)
 
-# --- CONTEÚDO CENTRAL (IGUAL AO PRINT) ---
-st.markdown("""
-    <div class="core-container">
-        <div class="ai-core"></div>
-        <div class="core-text">Adriel-AI Pro Enhanced - Ready for CHAT mode</div>
-        <div class="core-sub">Maximum accuracy and precision enabled</div>
-        <div class="core-detail">Sincronizado com os servidores globais da Base 44</div>
+# --- HEADER E PLATAFORMAS (SEU LINK DA HOSTINGER GARANTIDO) ---
+st.markdown(f"""
+    <div class="plat-bar">
+        <a href="https://clickbank.com" target="_blank" class="plat-item">● CLICKBANK</a>
+        <a href="https://buygoods.com" target="_blank" class="plat-item">● BUYGOODS</a>
+        <a href="https://stripe.com" target="_blank" class="plat-item">● STRIPE</a>
+        <a href="https://hostinger.com" target="_blank" class="plat-item" style="border-color:#00ffcc; color:#00ffcc;">● HOSTINGER VPS</a>
     </div>
 """, unsafe_allow_html=True)
 
-# BARRA DE COMANDO (SIMULADA)
-st.markdown("<br><br><br>", unsafe_allow_html=True)
-comando = st.text_input("Ask Adriel-AI anything...", placeholder="Digite o nome de um produto ou comando operacional...", label_visibility="collapsed")
+# --- CONTEÚDO PRINCIPAL ---
+st.markdown(f"""
+    <div class="welcome-box">
+        <h1 style="color:white; font-size:2.8rem; font-weight:900; margin:0;">Adriel-AI <span style="color:#00ffcc;">Pro</span></h1>
+        <p style="color:#94a3b8; font-size:1.1rem; margin-top:10px;">Sistema operacional de inteligência preditiva e faturamento.</p>
+        <hr style="border-color:#1e293b; margin:30px 0; opacity:0.3;">
+        <p style="color:#00ffcc; font-weight:800; letter-spacing:2px; text-transform:uppercase;">Selecione um comando na barra lateral para navegar</p>
+    </div>
+""", unsafe_allow_html=True)
 
-if comando:
-    st.write(f"🤖 **Processando comando:** {comando}...")
-    st.info("Varredura síncrona em andamento...")
-
-# MÉTRICAS RÁPIDAS
+# MÉTRICAS LIVE
 st.markdown("<br>", unsafe_allow_html=True)
 c1, c2, c3 = st.columns(3)
-c1.metric("PRECISÃO", "99.8%", "Sincronizado")
-c2.metric("LATÊNCIA", "14ms", "Ultra-Fast")
-c3.metric("FIREWALL", "Ativo", "Blindado")
+c1.metric("STATUS", "Online", "Sincronizado")
+c2.metric("OPERADORES", f"{random.randint(2200, 2500)}", "Live")
+c3.metric("BANCO DE DADOS", "Global", "Ativo")
