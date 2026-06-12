@@ -47,7 +47,7 @@ div[data-testid="stMetricContainer"]:nth-of-type(4) { border-bottom: 3px solid #
 }
 .caixa-holografica-master { background-color: #080f1d !important; border: 2px solid #1e293b !important; border-radius: 12px !important; padding: 24px !important; margin-bottom: 25px !important; width: 100% !important; }
 
-/* 🚨 REPROGRAMAÇÃO COMPILADA DOS BOTÕES NATIVOS LINK DO STREAMLIT EM CÁPSULA CIANO NEON VIBRANTE */
+/* 🚨 BOTÕES NATIVOS EM CÁPSULAS PERFEITAS DA APPLE CIANO NEON VIBRANTE */
 div.stLinkButton > a, .stButton > button {
     background: linear-gradient(135deg, #00ffcc 0%, #00FF87 100%) !important; color: #030712 !important;
     font-weight: 900 !important; font-size: 13px !important; border-radius: 30px !important;
@@ -74,10 +74,11 @@ h1, h2, h3, h4, .stMarkdown p { color: #ffffff !important; }
 url_hostinger = "https://hostinger.com"
 
 # Inicialização segura das variáveis de controle de privilégio do plano
-if "plano_usuario" not in st.session_state: st.session_state.plano_usuario = None
+if "plano_usuario" not in st.session_state: 
+    st.session_state.plano_usuario = None
 
 # =============================================================================================================
-# 🔒 3. INTERFACE DA TRAVA DE SEGURANÇA: ENTRADA COM CHAVE MESTRE VIP NO CÓDIGO
+# 🔒 3. VERIFICAÇÃO INTELIGENTE DE CRIPTOGRAFIA DE PLANOS (TELA DE BLOQUEIO DO CLIENTE)
 # =============================================================================================================
 if st.session_state.plano_usuario is None:
     col_t, col_o = st.columns([2.0, 1.0])
@@ -118,9 +119,9 @@ if st.session_state.plano_usuario is None:
     
     col_v1, col_v2, col_v3 = st.columns(3)
     with col_v1:
-        st.markdown(f"""<div class="container-card-luxo"><div><span style="color:#94a3b8; font-weight:bold; font-size:11px; letter-spacing:0.5px; text-transform:uppercase;">PLANO MENSAL START</span><h2 style="font-size:2.4rem; font-weight:900; margin:10px 0; color:#ffffff !important;">R$ 47</h2><p style="font-size:13px; color:#94a3b8; line-height:1.5; margin-bottom:20px;"><b>Chave de Teste: START-47</b><br>Liberação exclusiva do Módulo 1 (Radar de Produtos). Acesso básico para validação imediata.</p></div></div>""", unsafe_allow_html=True)
+        st.markdown("""<div class="container-card-luxo"><div><span style="color:#94a3b8; font-weight:bold; font-size:11px; letter-spacing:0.5px; text-transform:uppercase;">PLANO MENSAL START</span><h2 style="font-size:2.4rem; font-weight:900; margin:10px 0; color:#ffffff !important;">R$ 47</h2><p style="font-size:13px; color:#94a3b8; line-height:1.5; margin-bottom:20px;"><b>Chave de Teste: START-47</b><br>Liberação exclusiva do Módulo 1 (Radar de Produtos). Acesso básico para validação imediata.</p></div></div>""", unsafe_allow_html=True)
         st.link_button("💳 CONTRATAR START", url_hostinger, use_container_width=True, key="btn_p1_buy")
     with col_v2:
-        st.markdown(f"""<div class="container-card-luxo"><div><span style="color:#94a3b8; font-weight:bold; font-size:11px; letter-spacing:0.5px; text-transform:uppercase;">PLANO MENSAL PRO</span><h2 style="font-size:2.4rem; font-weight:900; margin:10px 0; color:#ffffff !important;">R$ 97</h2><p style="font-size:13px; color:#94a3b8; line-height:1.5; margin-bottom:20px;"><b>Chave de Teste: PRO-97</b><br>Radar + Módulo RSA (Keywords) + Arquiteto de Funil. Foco em quem já escala campanhas.</p></div></div>""", unsafe_allow_html=True)
+        st.markdown("""<div class="container-card-luxo"><div><span style="color:#94a3b8; font-weight:bold; font-size:11px; letter-spacing:0.5px; text-transform:uppercase;">PLANO MENSAL PRO</span><h2 style="font-size:2.4rem; font-weight:900; margin:10px 0; color:#ffffff !important;">R$ 97</h2><p style="font-size:13px; color:#94a3b8; line-height:1.5; margin-bottom:20px;"><b>Chave de Teste: PRO-97</b><br>Radar + Módulo RSA (Keywords) + Arquiteto de Funil. Foco em quem já escala campanhas.</p></div></div>""", unsafe_allow_html=True)
         st.link_button("💳 CONTRATAR PRO", url_hostinger, use_container_width=True, key="btn_p2_buy")
     with col_v3:
