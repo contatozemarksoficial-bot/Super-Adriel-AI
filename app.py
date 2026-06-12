@@ -1,187 +1,141 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-from datetime import datetime
+import random
+import time
 
-# 1. CONFIGURAÇÃO DA PÁGINA (GRUDADA NO TETO DO MONITOR)
-st.set_page_config(page_title="Radar de Produtos - AdrielAI", page_icon="📊", layout="wide", initial_sidebar_state="collapsed")
+def main():
+    # 1. CONFIGURAÇÃO DE ELITE (Design Cinema Dark)
+    st.set_page_config(page_title="Adriel-AI Pro | Gestão Suprema", layout="wide", initial_sidebar_state="expanded")
 
-# =============================================================================================================
-# 2. INJEÇÃO DE CSS DE ALTO LUXO (EXTINGUE A BARRA BRANCA E CRIA CARDS EM GRADE NEON)
-# =============================================================================================================
-st.markdown("""
-<style>
-/* 🌌 Fundo Escuro Premium Cyber Onyx */
-.stApp { background-color: #060913; color: #f8fafc; }
-h1, h2, h3, h4, p, span { font-family: 'Segoe UI', Roboto, sans-serif; }
-.titulo-cyber { font-size: 2.3rem; font-weight: 900; color: #00ffcc; text-shadow: 0 0 15px rgba(0, 255, 204, 0.4); margin-bottom: 0px; }
+    # 2. CSS MASTER LUXO - PROTOCOLO TRIPLE BLACK TOTAL
+    st.markdown("""
+    <style>
+        /* RESET TOTAL E FUNDO PRETO ABSOLUTO */
+        header, [data-testid="stHeader"] { visibility: hidden; height: 0px; }
+        .stApp, [data-testid="stSidebar"], [data-testid="stSidebarNav"], [data-testid="stAppViewContainer"] {
+            background-color: #010409 !important;
+        }
 
-/* 🚨 EXTINÇÃO TOTAL DA BARRA BRANCA DO TOPO */
-[data-testid="stHeader"] { display: none !important; height: 0px !important; background: transparent !important; }
-.stHeader { display: none !important; }
-.block-container { padding-top: 0.5rem !important; padding-bottom: 2rem !important; padding-left: 2rem !important; padding-right: 2rem !important; max-width: 100% !important; width: 100% !important; }
-[data-testid="stSidebar"] { display: none !important; width: 0px !important; }
-
-/* 🚨 REVOLUÇÃO DOS BOTÕES NATIVOS PARA CASCA EM FORMATO DE CARDS COMPACTOS */
-.stButton > button {
-    background-color: #0f1526 !important;
-    color: #cbd5e1 !important;
-    font-weight: 800 !important;
-    font-size: 13px !important;
-    border-radius: 10px !important;
-    padding: 12px 10px !important;
-    width: 100% !important;
-    min-height: 48px !important;
-    cursor: pointer !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/* 🔥 ANIMAÇÃO NEON DE PULSAR CONTÍNUO NAS BORDAS DOS CARDS (PISCANDO) */
-@keyframes pulseVermelho {
-    0% { border-color: #ff0055; box-shadow: 0 0 4px #ff0055; }
-    50% { border-color: #ff4d88; box-shadow: 0 0 15px #ff0055; }
-    100% { border-color: #ff0055; box-shadow: 0 0 4px #ff0055; }
-}
-@keyframes pulseCiano {
-    0% { border-color: #00ffcc; box-shadow: 0 0 4px #00ffcc; }
-    50% { border-color: #33ffdd; box-shadow: 0 0 15px #00ffcc; }
-    100% { border-color: #00ffcc; box-shadow: 0 0 4px #00ffcc; }
-}
-
-/* Aplicação das classes animadas injetadas via chassi invisível */
-.card-alta button { border: 2px solid #ff0055 !important; animation: pulseVermelho 1.8s infinite ease-in-out !important; }
-.card-alta button p { color: #ff4d88 !important; }
-.card-alta button:hover { background: #ff0055 !important; transform: translateY(-2px) !important; }
-.card-alta button:hover p { color: #ffffff !important; }
-
-.card-normal button { border: 2px solid #00ffcc !important; animation: pulseCiano 2.2s infinite ease-in-out !important; }
-.card-normal button p { color: #33ffdd !important; }
-.card-normal button:hover { background: #00ffcc !important; transform: translateY(-2px) !important; }
-.card-normal button:hover p { color: #060913 !important; }
-
-/* Badges e Contêineres de Informação */
-.badge-alta-cyber { background-color: #2a0813; color: #ff4d88 !important; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-size: 13px; border: 2px solid #ff0055; display: inline-block; }
-.badge-normal-cyber { background-color: #04251d; color: #33ffdd !important; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-size: 13px; border: 2px solid #00ffcc; display: inline-block; }
-.badge-funil-cyber { background-color: #1e1035; color: #cc66ff !important; padding: 6px 14px; border-radius: 8px; font-weight: 900; font-size: 13px; border: 2px solid #9900ff; display: inline-block; margin-left: 5px; }
-.card-cyber-info { background: #0f1526; border: 2px solid #1e293b; padding: 22px; border-radius: 14px; margin-top: 15px; }
-</style>
-""", unsafe_allow_html=True)
-
-# 3. MARCA EXECUTIVA SUPERIOR
-st.markdown('<h1 class="titulo-cyber">💎 Radar de Produtos AdrielAI</h1>', unsafe_allow_html=True)
-st.write("Ecossistema de monitoramento contínuo com auditoria detalhada de mercado gringo.")
-st.write("---")
-
-# 4. BANCO DE DADOS DE 20 PRODUTOS CONSOLIDADOS (10 TOP ALTA + 10 VALIDADOS)
-NOMES_PRODUTOS = [
-    "Alpilean", "Puravive", "Java Burn", "GlucoTrust", "ProDentim", 
-    "Liv Pure", "Ikaria Lean Belly", "Cortexi", "FlowForce Max", "Metanail Serum",
-    "LeanBliss", "Neotonics", "Synogut", "Kerassentials", "SightCare", 
-    "Prostadine", "Fast Lean Pro", "Amiclear", "Alpha Tonic", "Joint Genesis"
-]
-
-def gerar_auditoria_produto(nome_prod, ranking):
-    is_top_10 = ranking <= 10
-    status = "🔥 ALTA" if is_top_10 else "✅ VALIDADO"
-    
-    if ranking <= 6:
-        funil_pos = "💎 FUNDO DE FUNIL"
-        estrategia = "Fundo de Funil Estrito. Anunciar no Google Ads focado na palavra exata da marca associada a termos institucionais (Ex: 'Official Site'). Obrigatório uso de Pre-Sell."
-    elif ranking <= 14:
-        funil_pos = "📈 MEIO DE FUNIL"
-        estrategia = "Meio de Funil Ativo. O público busca validação da solução. Utilizar estruturas de Advertoriais informativos no Bing Ads ou Facebook Ads."
-    else:
-        funil_pos = "🌲 TOPO DE FUNIL"
-        estrategia = "Topo de Funil Abrangente. Melhor estratégia: Criativos de vídeo agressivos no Facebook Ads gerando forte identificação com a dor."
-
-    fator = len(nome_prod)
-    buscas_m = 50000 + (fator * 3200) if is_top_10 else 5000 + (fator * 600)
-    buscas_h = 1500 + (fator * 110) if is_top_10 else 80 + (fator * 15)
-    
-    cpc_texto = f"USA: $ {round(2.0 + (fator * 0.1), 2)} | UK: $ {round(1.2 + (fator * 0.08), 2)} | CA: $ {round(1.5 + (fator * 0.09), 2)}"
-    pais = "Estados Unidos (USA)" if is_top_10 else "Reino Unido (UK)"
-    
-    return {
-        "nome": nome_prod, "status": status, "buscas_mes": buscas_m, "buscas_hoje": buscas_h, "melhor_pais": pais,
-        "dor": f"Instabilidade metabólica e sintomas persistentes associados ao nicho de mercado de {nome_prod}.",
-        "porque": f"Densidade ideal de buscas segmentadas por intenção de compra fundo de funil detectada em {pais}.",
-        "cpc": cpc_texto, "funil": funil_pos, "estrategia": estrategia, "ranking": ranking
-    }
-
-# Roteador seguro de estado da memória RAM do app
-if "produto_radar_atual" not in st.session_state:
-    st.session_state.produto_radar_atual = gerar_auditoria_produto("Alpilean", 1)
-
-p_sel = st.session_state.produto_radar_atual
-
-# =============================================================================================================
-# 5. ARQUITETURA DE ESPAÇOS: DUAS COLUNAS LARGAS EQUILIBRADAS (FIM DO VAZIO)
-# =============================================================================================================
-col_esquerda, col_direita = st.columns([1.1, 1.0])
-
-# COLUNA ESQUERDA: A MÁGICA DA GRADE DE CARDS (2 PRODUTOS LADO A LADO)
-with col_esquerda:
-    st.markdown("### 🎯 Painel Estatístico Global")
-    st.write("Clique em um card para carregar a Central de Inteligência à direita:")
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    # Roda a lista dividindo de 2 em 2 blocos na horizontal para preencher a tela inteira
-    for i in range(0, len(NOMES_PRODUTOS), 2):
-        col_card1, col_card2 = st.columns(2)
+        /* ESCONDE O MENU PADRÃO E ESTILIZA A LATERAL EM BOTÕES */
+        [data-testid="stSidebarNav"] { display: none; }
+        [data-testid="stSidebar"] { border-right: 1px solid #1e293b !important; }
         
-        # CARD 1 da linha
-        rank1 = i + 1
-        nome1 = NOMES_PRODUTOS[i]
-        p_dados1 = gerar_auditoria_produto(nome1, rank1)
-        classe1 = "card-alta" if rank1 <= 10 else "card-normal"
-        with col_card1:
-            st.markdown(f'<div class="{classe1}">', unsafe_allow_html=True)
-            if st.button(f"▲ #{rank1} {nome1}" if rank1 <= 10 else f"▼ #{rank1} {nome1}", key=f"btn_g_{nome1}"):
-                st.session_state.produto_radar_atual = p_dados1
-                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
-            
-        # CARD 2 da linha
-        if i + 1 < len(NOMES_PRODUTOS):
-            rank2 = i + 2
-            nome2 = NOMES_PRODUTOS[i + 1]
-            p_dados2 = gerar_auditoria_produto(nome2, rank2)
-            classe2 = "card-alta" if rank2 <= 10 else "card-normal"
-            with col_card2:
-                st.markdown(f'<div class="{classe2}">', unsafe_allow_html=True)
-                if st.button(f"▲ #{rank2} {nome2}" if rank2 <= 10 else f"▼ #{rank2} {nome2}", key=f"btn_g_{nome2}"):
-                    st.session_state.produto_radar_atual = p_dados2
-                    st.rerun()
-                st.markdown('</div>', unsafe_allow_html=True)
+        .sidebar-logo { color: #ffffff; font-size: 1.8rem; font-weight: 900; padding: 20px; text-align: left; }
+        .sidebar-label { color: #475569; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 0 20px; margin-bottom: 15px; }
+        
+        .sidebar-menu { display: flex; flex-direction: column; gap: 8px; padding: 0 15px; }
+        .menu-btn {
+            display: flex; align-items: center; gap: 12px; padding: 12px;
+            background: #0d1117; border: 1px solid #1e293b; border-radius: 8px;
+            color: #ffffff !important; text-decoration: none !important;
+            font-weight: 700; font-size: 0.75rem; text-transform: uppercase; transition: 0.3s;
+        }
+        .menu-btn:hover { border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 204, 0.2); transform: translateX(5px); }
+        .icon-n { color: #00ffcc; text-shadow: 0 0 8px #00ffcc; font-size: 1.1rem; }
 
-# COLUNA DIREITA: CENTRAL DE INTELIGÊNCIA + O PEDIDO DO GRÁFICO REAL
-with col_direita:
-    st.markdown("### ⚡ Central de Inteligência")
-    st.markdown(f"## {p_sel['nome']}")
-    
-    # Badges Executivas Neon
-    if "🔥" in p_sel["status"]:
-        st.markdown('<span class="badge-alta-cyber">🔥 ALTA</span>', unsafe_allow_html=True)
-    else:
-        st.markdown('<span class="badge-normal-cyber">✅ VALIDADO</span>', unsafe_allow_html=True)
-    st.markdown(f'<span class="badge-funil-cyber">{p_sel["funil"]}</span>', unsafe_allow_html=True)
-    
+        /* HEADER E LIVE STATUS */
+        .header-top { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #1e293b; margin-bottom: 25px; }
+        .live-status { color: #00ffcc; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .blink { height: 8px; width: 8px; background-color: #00ffcc; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        /* PLATAFORMAS (BADGES CLICÁVEIS) */
+        .plat-bar { display: flex; gap: 10px; margin-bottom: 30px; overflow-x: auto; }
+        .plat-item { flex: 1; background: #0d1117; border: 1px solid #1e293b; padding: 12px; border-radius: 8px; text-align: center; color: #f9fafb; font-size: 0.65rem; font-weight: 800; text-decoration: none !important; transition: 0.3s; min-width: 120px; }
+        .plat-item:hover { border-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 204, 0.2); }
+
+        /* MÉTRICAS DE FATURAMENTO */
+        .metric-card {
+            background: #0d1117; border: 1px solid #1e293b; padding: 25px; border-radius: 15px;
+            text-align: center; border-bottom: 4px solid #00ffcc;
+        }
+        .m-label { color: #94a3b8; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        .m-value { color: #ffffff; font-size: 1.8rem; font-weight: 900; }
+
+        /* CARDS DE LICENÇA ACESSÍVEIS */
+        .plan-card {
+            background: #0d1117; border: 1px solid #1e293b; padding: 35px; border-radius: 20px;
+            text-align: left; transition: 0.4s; height: 100%; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .plan-card:hover { border-color: #00ffcc; transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .p-price { color: #ffffff; font-size: 2.5rem; font-weight: 900; margin: 15px 0; }
+        
+        .btn-checkout {
+            display: block; width: 100%; padding: 16px; background: #00ffcc; color: #010409 !important;
+            border-radius: 10px; text-align: center; font-weight: 900; font-size: 0.9rem;
+            text-transform: uppercase; text-decoration: none !important; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+        .btn-checkout:hover { background: #ffffff; box-shadow: 0 0 40px #00ffcc; transform: scale(1.02); }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # --- SIDEBAR (CONFORME O PRINT) ---
+    with st.sidebar:
+        st.markdown('<div class="sidebar-logo">🤖 Adriel-AI <span style="color:#00ffcc;">Pro</span></div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-label">MÓDULOS DE COMANDO</div>', unsafe_allow_html=True)
+        st.markdown("""
+        <div class="sidebar-menu">
+            <a href="/" class="menu-btn"><span class="icon-n">🏠</span> DASHBOARD</a>
+            <a href="Radar" class="menu-btn"><span class="icon-n">📡</span> 1. RADAR ELITE</a>
+            <a href="Auditor" class="menu-btn"><span class="icon-n">🕵️</span> 2. AUDITOR IA</a>
+            <a href="RSA" class="menu-btn"><span class="icon-n">✍️</span> 3. GERADOR RSA</a>
+            <a href="Cacador" class="menu-btn"><span class="icon-n">🎯</span> 4. CAÇADOR V10</a>
+            <a href="Presell" class="menu-btn"><span class="icon-n">📄</span> 5. PRE-SELL</a>
+            <a href="Funil" class="menu-btn"><span class="icon-n">📐</span> 6. FUNIL</a>
+            <a href="Assinantes" class="menu-btn" style="border-left: 4px solid #00ffcc; background: #1e293b;"><span class="icon-n">💎</span> ASSINANTES</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # --- HEADER E PLATAFORMAS ---
+    st.markdown(f"""
+        <div class="header-top">
+            <div style="font-size:2rem; font-weight:900; color:white;">🛰️ Central de <span style="color:#00ffcc;">Assinantes</span></div>
+            <div class="live-status"><span class="blink"></span> {random.randint(2300, 2600):,} OPERADORES CONECTADOS AGORA</div>
+        </div>
+        <div class="plat-bar">
+            <a href="https://clickbank.com" target="_blank" class="plat-item">● CLICKBANK</a>
+            <a href="https://buygoods.com" target="_blank" class="plat-item">● BUYGOODS</a>
+            <a href="https://digistore24.com" target="_blank" class="plat-item">● DIGISTORE24</a>
+            <a href="https://stripe.com" target="_blank" class="plat-item">● STRIPE DASH</a>
+            <a href="https://hostinger.com" target="_blank" class="plat-item">● HOSTINGER VPS</a>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # --- MÉTRICAS DE FATURAMENTO ---
+    m1, m2, m3, m4 = st.columns(4)
+    with m1: st.markdown('<div class="metric-card"><div class="m-label">FATURAMENTO GERAL</div><div class="m-value">R$ 142.580</div></div>', unsafe_allow_html=True)
+    with m2: st.markdown('<div class="metric-card"><div class="m-label">LICENÇAS ATIVAS</div><div class="m-value">2.105</div></div>', unsafe_allow_html=True)
+    with m3: st.markdown('<div class="metric-card"><div class="m-label">RECORRÊNCIA (MRR)</div><div class="m-value">R$ 104.200</div></div>', unsafe_allow_html=True)
+    with m4: st.markdown('<div class="metric-card" style="border-bottom-color:#ff0055;"><div class="m-label">TAXA DE CHURN</div><div class="m-value">0.8%</div></div>', unsafe_allow_html=True)
+
     st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown('<h2 style="color:white; font-size:1.8rem; font-weight:900; letter-spacing:-1px;">💳 ADESÃO ÀS NOVAS LICENÇAS SUPREMAS</h2>', unsafe_allow_html=True)
+
+    # --- CARDS DE VENDAS ---
+    p1, p2, p3 = st.columns(3)
     
-    # Métricas numéricas limpas
-    c1, c2 = st.columns(2)
-    c1.metric(label="🔎 Pesquisas no Mês", value=f"{p_sel['buscas_mes']:,}")
-    c2.metric(label="⚡ Pesquisas Hoje", value=f"{p_sel['buscas_hoje']:,}")
-    
-    # 🚨 SEU PEDIDO: INSERÇÃO DO GRÁFICO RADAR DE VOLUMETRIA EM TEMPO REAL HORA POR HORA
-    st.write("")
-    st.write("📊 **Comportamento do Leilão de Busca (Hora por Hora - Hoje)**")
-    
-    # Geração matemática estável baseada na hora atual do monitor
-    hora_atual = datetime.now().hour
-    np.random.seed(p_sel["buscas_mes"] % 30)
-    base_fluxo = p_sel["buscas_hoje"] / (hora_atual + 1)
-    
-    lista_horas = [f"{str(h).zfill(2)}:00" for h in range(0, hora_atual + 1)]
+    licencas = [
+        {"n": "PLANO MENSAL START", "v": "R$ 47", "d": "Liberação do Módulo 1 (Radar) + Tendências. Acesso básico para validação imediata do robô.", "l": "#"},
+        {"n": "PLANO MENSAL PRO", "v": "R$ 97", "d": "Start + Módulo RSA (45 Keywords) + Arquiteto de Funil. Foco em escala semanal acelerada.", "l": "#"},
+        {"n": "PLANO ELITE MASTER", "v": "R$ 197", "d": "ACESSO TOTAL ILIMITADO + Construtor Pre-Sell Hostinger. O poder máximo da Adriel-AI Pro.", "l": "#"}
+    ]
+
+    cols = [p1, p2, p3]
+    for i, lic in enumerate(licencas):
+        with cols[i]:
+            st.markdown(f"""
+            <div class="plan-card">
+                <div>
+                    <p style="color:#94a3b8; font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:1px;">{lic['n']}</p>
+                    <div class="p-price">{lic['v']}</div>
+                    <p style="color:#94a3b8; font-size:0.85rem; line-height:1.6; margin-bottom:25px;">{lic['d']}</p>
+                </div>
+                <a href="{lic['l']}" target="_blank" class="btn-checkout">💳 PAGAR COM CARTÃO / PIX</a>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.markdown("<br><br><p style='color:#475569; font-size:0.6rem; text-align:center;'>ESTRUTURA BLINDADA - PROTOCOLO ADRIEL-AI PRO V16.8</p>", unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
