@@ -4,7 +4,7 @@ from datetime import datetime
 
 def main():
     # 1. CONFIGURACAO PREMIUM DA INTERFACE SAAS 2026
-    st.set_page_config(page_title="Pré-Sell Premium - AdrielAI", layout="wide", initial_sidebar_state="collapsed")
+    st.set_page_config(page_title="Pré-Sell Premium - AdrielAI", layout="wide", initial_sidebar_state="expanded")
 
     # FORCADOR ULTRA LUXO CYBER-NEON COMPILADO (IMUNE AO BUG DO PYTHON 3.14)
     estilo_luxo = "<style>"
@@ -12,7 +12,7 @@ def main():
     estilo_luxo += "[data-testid='stAppViewContainer'] {padding-top: 0px !important;}"
     estilo_luxo += "html, body, [data-testid='stAppViewContainer'], .stApp {background-color: #060913 !important; color: #f8fafc !important;}"
     estilo_luxo += "[data-testid='stSidebar'], section[data-testid='stSidebar'] div {background-color: #090d16 !important;}"
-    estilo_luxo += "[data-testid='stSidebar'] nav ul li div a span {color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;}"
+    estilo_luxo += "[data-testid='stSidebar'] *, [data-testid='stSidebarNav'] a, [data-testid='stSidebarNav'] span {color: #ffffff !important; font-weight: bold !important;}"
     estilo_luxo += ".stTextInput>div>div>input, .stTextArea>div>div>textarea {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important;}"
     estilo_luxo += ".stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3) !important;}"
     estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
@@ -23,29 +23,29 @@ def main():
     st.markdown(estilo_luxo, unsafe_allow_html=True)
 
     st.markdown('<h1 style="font-size: 2.6rem; font-weight: 900; color: #00ffcc; text-shadow: 0 0 15px rgba(0,255,204,0.4); margin-bottom: 5px;">🌐 FABRICANTE DE PÁGINAS PRÉ-SELL</h1>', unsafe_allow_html=True)
-    st.write("Aprenda o passo a passo estratégico para construir páginas pontes indestrutivas e clonar ofertas gringas com máxima conversão.")
+    st.write("Aprenda o passo a passo estratégico para construir páginas pontes indestrutíveis e clonar ofertas gringas com máxima conversão.")
     st.markdown("---")
 
-    # 2. INFRAESTRUTURA INDISPENSÁVEL: DIRECIONAMENTO DE HOSPEDAGEM (MARKETING DE AFILIADOS)
+    # 2. INFRAESTRUTURA INDISPENSÁVEL: DIRECIONAMENTO DE HOSPEDAGEM
     st.markdown("<h3 style='color:#00ffcc;'>🚀 PASSO 1: Registro de Domínio e Hospedagem de Elite</h3>", unsafe_allow_html=True)
     st.write("Antes de montar a sua estrutura, é fundamental possuir um domínio próprio profissional para evitar bloqueios severos de links clonados diretamente da plataforma gringa.")
     
-    # INJEÇÃO DO SEU LINK DE AFILIADO REAL DA HOSTINGER
     url_afiliado = "https://hostinger.com"
     
-    st.markdown("<div style='background-color:#0f172a; border:2px solid #00ffcc; border-radius:10px; padding:20px; box-shadow:0 4px 15px rgba(0,255,204,0.15); margin-bottom:20px;'>💬 <b style='color:#00ffcc; font-size:1.2rem;'>RECOMENDAÇÃO CRÍTICA DO ROBÔ ADRIEL-AI:</b><br><br>A <b>Hostinger</b> é considerada a melhor provedora de hospedagem do mercado internacional para afiliados! Ela oferece servidores Cloud de altíssima velocidade, criador de sites intuitivo com IA, suporte premium 24 horas por dia em português e certificados SSL gratuitos inclusos para manter suas páginas pontes 100% seguras contra falhas publicitárias.<br><br><a href='" + url_afiliado + "' target='_blank' style='display:inline-block; background-color:#00ffcc; color:#030712; padding:12px 25px; border-radius:6px; font-weight:bold; text-decoration:none; box-shadow:0 0 10px #00ffcc;'>👉 CLIQUE AQUI PARA ADQUIRIR SUA HOSPEDAGEM NA HOSTINGER COM DESCONTO</a></div>", unsafe_allow_html=True)
+    st.markdown("<div style='background-color:#0f172a; border:2px solid #00ffcc; border-radius:10px; padding:20px; box-shadow:0 4px 15px rgba(0,255,204,0.15); margin-bottom:20px;'>💬 <b style='color:#00ffcc; font-size:1.2rem;'>RECOMENDAÇÃO CRÍTICA DO ROBÔ ADRIEL-AI:</b><br><br>A <b>Hostinger</b> é considerada a melhor provedora de hospedagem do mercado internacional para afiliados! Ela oferece servidores Cloud de altíssima velocidade, criador de sites intuitivo com IA, suporte premium 24 horas por dia em português e certificados SSL gratuitos incluos para manter suas páginas pontes 100% seguras contra falhas publicitárias.<br><br><a href='" + url_afiliado + "' target='_blank' style='display:inline-block; background-color:#00ffcc; color:#030312; padding:12px 25px; border-radius:6px; font-weight:bold; text-decoration:none; box-shadow:0 0 10px #00ffcc;'>👉 CLIQUE AQUI PARA ADQUIRIR SUA HOSPEDAGEM NA HOSTINGER COM DESCONTO</a></div>", unsafe_allow_html=True)
     st.markdown("---")
 
-    # 3. INPUT DINÂMICO PARA FACILITAR A CUSTOMIZAÇÃO EM TEMPO REAL
+    # 3. INPUT DINÂMICO
     st.markdown("<h3 style='color:#00ffcc;'>⚙️ Customizar Textos da sua Pré-Sell</h3>", unsafe_allow_html=True)
     produto_nome = st.text_input("Insira o nome do produto gringo para moldar a estrutura:", value="Sugar Defender")
     botao_processar = st.button("⚡ GERAR CONTEÚDO DA PÁGINA PONTE")
     st.markdown("---")
 
-    if produto_nome:
+    if produto_nome and botao_processar:
         p_nome = produto_nome.strip()
+        p_id = p_nome.replace(" ", "_").lower()
         
-        # 4. PASSO A PASSO DA ARQUITETURA DE LUXO DA PRÉ-SELL
+        # 4. PASSO A PASSO DA ARQUITETURA
         st.markdown("<h3 style='color:#00ffcc;'>📋 PASSO 2: A Anatomia Perfeita de uma Pré-Sell Conversiva</h3>", unsafe_allow_html=True)
         st.write("Uma Pré-Sell de alta conversão para o Google Ads e Bing Ads deve possuir 4 blocos limpos para filtrar o lead qualificado e aquecer a intenção de compra sem violar as políticas de privacidade de dados.")
         st.write("")
@@ -80,7 +80,7 @@ def main():
 
         st.markdown("---")
 
-        # 5. GERADOR DE CONTEÚDO PRONTO COM FECHAMENTO SEGURO
+        # 5. GERADOR DE CONTEÚDO PRONTO
         st.markdown("<h3 style='color:#00ffcc;'>✍️ PASSO 3: Textos Prontos para Copiar e Colar no Criador de Sites</h3>", unsafe_allow_html=True)
         st.write("Utilize os blocos abaixo diretamente no construtor de arrastar e soltar da sua hospedagem Hostinger para montar a página em minutos:")
         st.write("")
@@ -90,13 +90,10 @@ def main():
         copy_botao = "👉 CLICK HERE TO VISIT THE OFFICIAL WEBSITE NOW"
         copy_termos = "Copyright 2026 - All Rights Reserved. This site is not part of the Google website or Google Inc. Additionally, this site is NOT endorsed by Google in any way."
 
-        st.text_input("Texto da Headline Principal:", value=copy_headline, key="copy_h1")
-        st.text_input("Texto do Subtítulo de Redirecionamento:", value=copy_subheadline, key="copy_h2")
-        st.text_input("Texto do Botão Central de Clique (CTA):", value=copy_botao, key="copy_btn")
-        st.text_area("Texto de Conformidade do Rodapé (Compliance):", value=copy_termos, key="copy_foot", height=100)
-
-    # Rodapé unificado Black-Label
-    st.markdown('<div style="clear: both; text-align: center; font-size: 11px; color: #475569; padding-top: 50px;"><hr style="border-color: #1e293b;">© 2026 Adriel-AI Pro - Todos os Direitos Reservados • Blindagem Estrutural V45 Ativa.</div>', unsafe_allow_html=True)
+        st.text_input("Texto da Headline Principal:", value=copy_headline, key=f"copy_h1_{p_id}")
+        st.text_input("Texto da Sub-Headline de Redirecionamento:", value=copy_subheadline, key=f"copy_h2_{p_id}")
+        st.text_input("Texto do Botão de Chamada (CTA):", value=copy_botao, key=f"copy_btn_{p_id}")
+        st.text_area("Termos Obrigatórios do Rodapé:", value=copy_termos, height=100, key=f"copy_footer_{p_id}")
 
 if __name__ == "__main__":
     main()
