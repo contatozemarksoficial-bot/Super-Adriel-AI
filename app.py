@@ -3,9 +3,12 @@ import pandas as pd
 import requests
 import json
 import time
+from datetime import datetime
 
 # 1. CONFIGURAÇÃO OFICIAL DE ALTO LUXO DE CINEMA
 st.set_page_config(page_title="Adriel-AI Pro", page_icon="🤖", layout="wide")
+
+CHAVE_MESTRA = "ONYX_MASTER_2026"
 
 # Inicialização de estados de sessão de segurança e navegação
 if "modulo_ativo" not in st.session_state: st.session_state.modulo_ativo = "DASHBOARD"
@@ -24,7 +27,7 @@ st.markdown("""
 }
 [data-testid="stSidebar"] section { background-color: #0c111d !important; }
 
-/* Oculta completamente os links nativos e feios do Streamlit */
+/* Oculta completamente os links nativos do Streamlit */
 [data-testid="stSidebarNav"], ul[data-testid="stSidebarNavItems"] { display: none !important; height: 0px !important; }
 [data-testid="stHeader"] { display: none !important; height: 0px !important; }
 .block-container { padding-top: 1.5rem !important; padding-bottom: 2rem; padding-left: 2.5rem; padding-right: 2.5rem; }
@@ -53,25 +56,26 @@ st.markdown("""
 .card-metric-title { font-size: 11px; font-weight: 800; color: #94a3b8; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
 .card-metric-value { font-size: 28px; font-weight: 900; color: #ffffff; }
 
-/* CARDS DE PREÇO DOS PLANOS MENSAL R$ 47, R$ 97, R$ 197 */
-.grid-planos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 15px; }
+/* CARDS DE PREÇO DOS PLANOS */
 .card-plano {
     background-color: #0d121f !important; border: 1px solid #1e293b !important; border-radius: 16px !important;
-    padding: 30px !important; box-shadow: 0 12px 35px rgba(0,0,0,0.5) !important;
+    padding: 30px !important; box-shadow: 0 12px 35px rgba(0,0,0,0.5) !important; min-height: 280px;
 }
 .plano-title { font-size: 11px; font-weight: bold; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
 .plano-price { font-size: 36px; font-weight: 900; color: #ffffff; margin: 15px 0; }
 .plano-desc { font-size: 13px; color: #cbd5e1; line-height: 1.5; margin-bottom: 25px; min-height: 50px; }
 
+/* Botão de Compra e Ação Verde Água Neon */
 .btn-compra {
     display: block; background: linear-gradient(135deg, #00ffcc 0%, #00FF87 100%);
     color: #030712 !important; text-decoration: none !important; text-align: center;
     font-weight: 900; font-size: 13px; padding: 14px; border-radius: 30px;
     text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
 }
-.stTextInput>div>div>input { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; }
+.stTextInput>div>div>input, .stTextArea>div>div>textarea { background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; }
 .top-badge-container { display: flex; gap: 15px; margin-bottom: 25px; }
 .top-badge { background-color: #0f172a; border: 1px solid #1e293b; padding: 6px 16px; border-radius: 6px; font-size: 11px; font-family: monospace; font-weight: bold; color: #38bdf8; }
+.terminal-cyber { background-color: #040814 !important; border: 2px solid #00ffcc !important; border-radius: 10px !important; padding: 15px !important; font-family: monospace !important; color: #00ffcc !important; white-space: pre-wrap !important; font-size: 13px !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -82,7 +86,6 @@ with st.sidebar:
     st.markdown('<h2 style="color: #00ffcc; font-weight: 900; font-size: 22px; margin-bottom: 5px;">👑 Adriel-AI Pro</h2>', unsafe_allow_html=True)
     st.markdown('<p style="font-size: 10px; color: #64748b; font-weight: bold; margin-bottom: 20px;">MÓDULOS DE COMANDO</p>', unsafe_allow_html=True)
     
-    # Renderização Condicional dos Botões do Menu Lateral
     if st.session_state.status_usuario in ["ATIVO", "ADMIN"]:
         if st.button("📊 DASHBOARD", use_container_width=True): st.session_state.modulo_ativo = "DASHBOARD"
         if st.button("🔥 1. RADAR ELITE", use_container_width=True): st.session_state.modulo_ativo = "RADAR"
@@ -117,7 +120,7 @@ if st.session_state.status_usuario == "BLOQUEADO" and st.session_state.modulo_at
     st.stop()
 
 # =============================================================================================================
-# 6. RENDERIZAÇÃO DAS TELAS E INTEGRAÇÃO DA CHAVE MESTRA
+# 5. RENDERIZAÇÃO DAS TELAS INTEGRADAS
 # =============================================================================================================
 
 # 🔑 TELA DE LOGIN / CENTRAL DE ACESSO
@@ -126,36 +129,32 @@ if st.session_state.status_usuario == "DESLOGADO" and st.session_state.modulo_at
     with col2:
         st.markdown("<div class='card-saas' style='margin-top:50px; border-color:#00ffcc;'>", unsafe_allow_html=True)
         st.markdown("<h2 style='text-align:center; color:#00ffcc;'>🔑 INTEL ENTRADA SAAS</h2>", unsafe_allow_html=True)
-        st.write("Digite sua chave de licença ou utilize a Chave Mestra:")
-        
-        chave_input = st.text_input("Chave de Licença ou Código Secreto:", value="")
-        st.write("")
-        
+        st.write("Digite sua chave secreta de acesso mestre:")
+        chave_input = st.text_input("Chave de Licença ou Código Secreto:", type="password", value="")
         if st.button("🔓 VERIFICAR CREDENCIAIS NO SERVIDOR"):
-            # CHAVE MESTRA QUE DESTRAVA TUDO E ATIVA O MENU DO DONO
-            if chave_input.strip() == "ONYX_MASTER_2026":
+            if chave_input.strip() == CHAVE_MESTRA:
                 st.session_state.status_usuario = "ADMIN"
                 st.session_state.modulo_ativo = "DASHBOARD"
-                st.success("👑 Chave Mestra Válida! Modo Administrador Liberado.")
+                st.success("👑 Chave Mestra Válida! Modo Gestor Liberado.")
                 time.sleep(0.5)
                 st.rerun()
-            elif chave_input.strip() == "cliente":
-                st.session_state.status_usuario = "ATIVO"
-                st.session_state.modulo_ativo = "DASHBOARD"
-                st.rerun()
-            elif chave_input.strip() == "bloqueado":
-                st.session_state.status_usuario = "BLOQUEADO"
-                st.session_state.modulo_ativo = "ASSINANTES"
-                st.rerun()
-            else:
-                st.error("❌ Token inválido ou assinatura cancelada no gateway.")
+            else: st.error("❌ Token inválido ou assinatura pendente.")
         st.markdown("</div>", unsafe_allow_html=True)
 
-# 👑 PAINEL EXCLUSIVO DO DONO DO ROBÔ (Para você simular e ver como fica a tela do cliente)
+# 👑 PAINEL EXCLUSIVO DO DONO DO ROBÔ
 if st.session_state.status_usuario == "ADMIN":
     st.markdown("<div style='background:rgba(255,255,255,0.02); border:2px dashed #cc66ff; border-radius:12px; padding:15px; margin-bottom:20px;'>", unsafe_allow_html=True)
-    st.markdown("<h6 style='color:#cc66ff; margin:0;'>⚙️ INTERRUPTOR DA CHAVE MESTRA CONTROLE DE CLIENTES</h6>", unsafe_allow_html=True)
+    st.markdown("<h6 style='color:#cc66ff; margin:0;'>⚙️ INTERRUPTOR DA CHAVE MESTRA</h6>", unsafe_allow_html=True)
     c_adm1, c_adm2 = st.columns(2)
-    if c_adm1.button("🟢 Ver como Cliente Ativo Pro"):
+    if c_adm1.button("🟢 Perfil: Cliente Ativo"):
         st.session_state.status_usuario = "ATIVO"
         st.rerun()
+    if c_adm2.button("🔴 Perfil: Cliente Bloqueado"):
+        st.session_state.status_usuario = "BLOQUEADO"
+        st.session_state.modulo_ativo = "ASSINANTES"
+        st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# 📊 MONITOR: DASHBOARD / ASSINANTES (EXATO DO SEU PRINT)
+if st.session_state.modulo_ativo in ["DASHBOARD", "ASSINANTES"] and st.session_state.status_usuario != "DESLOGADO":
+    col_tit, col_online = st.columns(2)
