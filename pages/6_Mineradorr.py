@@ -87,24 +87,15 @@ st.write("")
 if st.button("⛏️ ACIONAR CAPTURA DE DADOS VIVOS DA GRINGA"):
     if prod_alvo:
         p_nome = prod_alvo.strip().lower()
-        
         log_terminal = st.empty()
         barra_progresso = st.progress(0)
-        
         log_terminal.markdown('<div class="terminal-hacker">📡 [REDE] Processando lote de dados expressos nos servidores americanos...</div>', unsafe_allow_html=True)
         barra_progresso.progress(40)
-
         resultados_reais = set()
-        
-        # ENGINE INSTANTÂNEA: Executa apenas 1 requisição focada de alto retorno para evitar gargalo e lentidão
         if api_key_input.strip() != "":
             url = "https://serper.dev"
-            headers = {
-                'X-API-KEY': api_key_input.strip(),
-                'Content-Type': 'application/json'
-            }
+            headers = {'X-API-KEY': api_key_input.strip(), 'Content-Type': 'application/json'}
             try:
-                # Busca direta pelo termo raiz para coletar as sugestões principais da API em uma pancada só
                 resposta = requests.post(url, headers=headers, json={"q": p_nome}, timeout=2.5)
                 if resposta.status_code == 200:
                     dados = resposta.json()
@@ -113,8 +104,6 @@ if st.button("⛏️ ACIONAR CAPTURA DE DADOS VIVOS DA GRINGA"):
                             resultados_reais.add(termo.lower().strip())
             except Exception:
                 pass
-
-        # EXPANSÃO EM MEMÓRIA VELOCIDADE DA LUZ: Processa localmente sem travar a rede do servidor
         extensao_comercial = [
             "official website", "buy online", "reviews 2026", "discount code", "ingredients list",
             "side effects", "order now", "customer complaints", "scam or legit", "price checker",
@@ -128,32 +117,23 @@ if st.button("⛏️ ACIONAR CAPTURA DE DADOS VIVOS DA GRINGA"):
             "ebay warning", "medical reviews", "doctor opinion", "customer experience", "negative reviews",
             "success stories", "clinical studies", "how much does it cost", "lowest price", "secure checkout"
         ]
-        
         for gatilho in extensao_comercial:
             resultados_reais.add(f"{p_nome} {gatilho}")
-        
-        # Adiciona cruzamento alfabético direto instantâneo
         alfabeto = [chr(i) for i in range(97, 123)]
         for let in alfabeto:
             resultados_reais.add(f"{p_nome} {let}")
             resultados_reais.add(f"buy {p_nome} {let}")
             resultados_reais.add(f"{p_nome} reviews {let}")
-
         lista_final = sorted(list(resultados_reais))
-
         barra_progresso.progress(85)
         log_terminal.markdown(f'<div class="terminal-hacker" style="border-color:#00ffcc; color:#00ffcc;">✅ [SUCESSO] Processamento em lote concluído! {len(lista_final)} Termos gerados instantaneamente!</div>', unsafe_allow_html=True)
-        
         st.write("---")
         st.markdown("### 📊 Banco de Dados Oficial Organizado por Funil de Vendas:")
-        
         topo_funil = []
         meio_funil = []
         fundo_funil = []
-        
         gatilhos_fundo = ["buy", "official", "order", "price", "discount", "coupon", "website", "sale", "store", "cost", "where to buy", "site", "promo", "voucher", "shipping", "checkout", "much", "walmart", "amazon"]
         gatilhos_meio = ["reviews", "ingredients", "side effects", "complaints", "scam", "does it work", "work", "independent", "results", "pros and cons", "customer", "facts", "legit", "dosage", "number", "how to", "safe", "warning", "fda", "label", "pills", "capsules", "testimonials", "clinical", "studies", "negative", "doctor", "medical", "bbb"]
-        
         for termo in lista_final:
             item_dados = {"Palavra-Chave": termo}
             if any(x in termo for x in gatilhos_fundo):
@@ -162,14 +142,23 @@ if st.button("⛏️ ACIONAR CAPTURA DE DADOS VIVOS DA GRINGA"):
                 meio_funil.append(item_dados)
             else:
                 topo_funil.append(item_dados)
-                
         col1, col2, col3 = st.columns(3)
-        
         with col1:
             st.markdown("#### 🔴 Topo de Funil (Descoberta)")
             if topo_funil:
                 st.dataframe(pd.DataFrame(topo_funil), use_container_width=True, hide_index=True)
             else:
                 st.info("Sem registros.")
-                
         with col2:
+            st.markdown("#### 🟡 Meio de Funil (Análise)")
+            if meio_funil:
+                st.dataframe(pd.DataFrame(meio_funil), use_container_width=True, hide_index=True)
+            else:
+                st.info("Sem registros.")
+        with col3:
+            st.markdown("#### 🟢 Fundo de Funil (Compra Direta)")
+            if fundo_funil:
+                st.dataframe(pd.DataFrame(fundo_funil), use_container_width=True, hide_index=True)
+            else:
+                st.info("Sem registros.")
+        barra_progresso.progress(100)
