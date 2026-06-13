@@ -3,63 +3,42 @@ import pandas as pd
 import time
 import random
 
-# 1. CONFIGURAÇÃO DE ELITE (FORÇA O MODO DARK NA RAIZ)
+# 1. CONFIGURAÇÃO DE ELITE (SIDEBAR FIXA E LAYOUT LARGO)
 st.set_page_config(page_title="Adriel-AI Elite v7", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# 2. INJEÇÃO DE CSS "EXTERMINADOR DE BRANCO" (BLINDAGEM MÁXIMA)
+# 2. INJEÇÃO DE CSS BLACK-LABEL (MATA O BRANCO E PROTEGE A SIDEBAR)
 # =============================================================================================================
 st.markdown("""
 <style>
-/* 🌌 BLOQUEIO TOTAL: Fundo Preto Absoluto em todas as camadas possíveis */
-html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stSidebar"], .stApp {
-    background-color: #02040a !important;
-    color: #f8fafc !important;
-}
+/* 🌌 FUNDO PRETO ABSOLUTO */
+.stApp, [data-testid="stHeader"], [data-testid="stSidebar"], .stSidebar { background-color: #02040a !important; }
 
-/* 👤 SIDEBAR NEON: Remove vácuos cinzas */
-section[data-testid="stSidebar"] { border-right: 1px solid #1e293b !important; background-color: #060913 !important; }
+/* 👤 SIDEBAR BLINDADA: MÓDULOS E PLATAFORMAS */
+section[data-testid="stSidebar"] { border-right: 1px solid #1e293b !important; min-width: 250px !important; }
 section[data-testid="stSidebar"] * { color: #00ffcc !important; }
 
-/* 📊 TABELAS DE LUXO: MATA O FUNDO BRANCO DAS CÉLULAS */
-[data-testid="stDataFrame"], [data-testid="stTable"], .stTable, .stDataFrame {
-    background-color: #060913 !important;
-    border: 1px solid #1e293b !important;
-}
-div[data-testid="stTable"] div, div[data-testid="stDataFrame"] div {
-    background-color: #060913 !important;
-    color: #ffffff !important;
-}
-thead tr th { background-color: #0f172a !important; color: #00ffcc !important; border: none !important; }
+/* 🚨 BLINDAGEM DO INPUT */
+div[data-baseweb="input"] { background-color: #060913 !important; border: 1px solid #00ffcc !important; border-radius: 8px; }
+input { background-color: #060913 !important; color: #ffffff !important; }
 
-/* 🚨 BLINDAGEM DO INPUT (FIM DA BARRA BRANCA) */
-div[data-baseweb="input"] { background-color: #060913 !important; border: 1.5px solid #00ffcc !important; border-radius: 8px; }
-input { background-color: #060913 !important; color: #ffffff !important; caret-color: #00ffcc !important; }
-
-/* 🤖 ROBÔ NEON EM ZOOM */
-.robot-scanner {
-    font-size: 80px; text-align: center;
-    filter: drop-shadow(0 0 20px #00ffcc);
-    animation: zoom 2s infinite alternate;
-}
+/* 🤖 ROBÔ VAI E VEM */
+.robot-scanner { font-size: 80px; text-align: center; filter: drop-shadow(0 0 15px #00ffcc); animation: zoom 2s infinite alternate; }
 @keyframes zoom { from { transform: scale(0.9); } to { transform: scale(1.05); } }
+
+/* 📊 TABELAS DE LUXO (SEM FUNDO BRANCO) */
+[data-testid="stDataFrame"] { background-color: #060913 !important; border: 1px solid #1e293b !important; border-radius: 10px; }
+thead tr th { background-color: #0f172a !important; color: #00ffcc !important; }
 
 /* 💎 MOLDURAS NEON (CHASSIS) */
 .moldura-neon { border: 2px solid #00ffcc; border-radius: 15px; padding: 20px; background: #040814; margin-bottom: 20px; text-align: center; }
 
-/* 📋 CARDS DA MATRIZ */
-.card-sugestao { background: #0f172a; border-left: 4px solid #00ffcc; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-top: 1px solid #1e293b; }
-
-/* ⚡ BOTÃO NEON */
-.stButton > button {
-    background: linear-gradient(135deg, #00ffcc 0%, #00FF87 100%) !important;
-    color: #030712 !important; font-weight: 900 !important; border-radius: 50px !important;
-    padding: 15px !important; width: 100%; border: none !important;
-}
+/* 📋 CARDS DA MATRIZ (LISTAGEM) */
+.card-sugestao { background: #0f172a; border-left: 4px solid #00ffcc; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-top: 1px solid #1e293b; text-align: left; }
 </style>
 """, unsafe_allow_html=True)
 
-# 3. SIDEBAR FIXA (MÓDULOS)
+# 3. SIDEBAR FIXA (MÓDULOS QUE NÃO PODEM SUMIR)
 with st.sidebar:
     st.markdown("### 📡 MÓDULOS")
     st.write("🟢 Radar de Lances")
@@ -71,19 +50,22 @@ with st.sidebar:
 
 # 4. ÁREA PRINCIPAL
 st.markdown('<div class="robot-scanner">🤖</div>', unsafe_allow_html=True)
-st.markdown('<h1 style="text-align:center; color:#00ffcc; font-weight:900; font-size:24px; margin-top:-10px;">MINERADOR CIBERNÉTICO ELITE</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="text-align:center; color:#00ffcc; font-weight:900; font-size:24px; margin-top:-15px;">MINERADOR CIBERNÉTICO ELITE</h1>', unsafe_allow_html=True)
 
-prod_alvo = st.text_input("💎 Digite o Produto Alvo:", value="Sugar Defender")
+prod_alvo = st.text_input("💎 Digite o Produto:", value="Sugar Defender")
 btn_run = st.button("🚀 DISPARAR MINERAÇÃO (50 TERMOS)")
 
+# Containers Fixos
 espaco_pesquisa = st.empty()
-espaco_matriz = st.container()
+espaco_vazio = st.container()
 
 if btn_run:
+    # 50 Sufixos estratégicos
     sufixos = ["official website", "buy now", "discount price", "order online", "customer reviews", "ingredients list", "side effects", "is it safe", "real results", "where to buy", "best price today", "official store", "coupon code", "promo code", "scam or legit", "benefits", "how to use", "shipping", "money back", "amazon price", "walmart cost", "vsl link", "checkout", "special offer", "lowest cost", "legit site", "official link", "get a discount", "sale today", "guaranteed", "supplement facts", "drops price", "liquid", "supplier", "buy direct", "reports", "scam check", "order today", "fast shipping", "genuine", "original", "stock", "availability", "cost per bottle", "top rated", "review", "pros and cons", "trial", "best deal", "portal", "store link"]
     
     minerados = []
     
+    # ⛏️ VARREDURA ATIVA (Chassi de cima)
     for i, suf in enumerate(sufixos):
         termo = f"{prod_alvo} {suf}".upper()
         espaco_pesquisa.markdown(f"""
@@ -92,24 +74,41 @@ if btn_run:
             <p style="color:#ffffff; margin:0;">Sincronizando servidores internacionais... ({i+1}/50)</p>
         </div>
         """, unsafe_allow_html=True)
-        minerados.append({"Nº": f"#{i+1:02d}", "TERMO": termo, "CPC": f"$ {random.uniform(2.15, 5.30):.2f}"})
+        minerados.append({
+            "Nº": f"#{i+1:02d}",
+            "TERMO DE ELITE": termo,
+            "LANCE CPC": f"$ {random.uniform(2.15, 5.30):.2f}",
+            "ROI": "🔥 ALTO"
+        })
         time.sleep(0.06)
 
-    espaco_pesquisa.markdown(f'<div class="moldura-neon"><h2 style="color:#00ff87; margin:0;">✅ VARREDURA CONCLUÍDA</h2></div>', unsafe_allow_html=True)
+    # ✅ VARREDURA CONCLUÍDA
+    espaco_pesquisa.markdown(f'<div class="moldura-neon"><h2 style="color:#00ff87; margin:0;">✅ VARREDURA CONCLUÍDA</h2><p style="color:#fff; margin:0;">50 Termos Extraídos com Sucesso</p></div>', unsafe_allow_html=True)
 
-    with espaco_matriz:
-        st.markdown("### 📊 Listagem Operacional")
+    # 🤖 PREENCHENDO O ESPAÇO VAZIO (LISTAGEM + MATRIZ)
+    with espaco_vazio:
+        # Tabela com CPC
+        st.markdown("### 📊 Listagem Operacional (CPC)")
         st.dataframe(pd.DataFrame(minerados), use_container_width=True, hide_index=True)
         
+        # Auditoria do Robô
         st.markdown(f"""
         <div style="background: rgba(0, 255, 204, 0.05); border: 2px solid #00ffcc; padding: 25px; border-radius: 15px; margin: 20px 0;">
-            <h3 style="color:#00ffcc; margin:0;">🤖 VERDITO DO ROBÔ</h3>
-            <p style="color:#ffffff; margin-top:10px;">Estratégia recomendada: Use correspondência exata nos termos 'Official'.</p>
+            <h3 style="color:#00ffcc; margin:0;">🤖 VERDITO DO ROBÔ ADRIEL-AI</h3>
+            <p style="color:#ffffff; font-size:15px; margin-top:10px;">
+                Análise concluída para <b>{prod_alvo}</b>. Use os termos 'Official' em correspondência exata para dominar o Google Ads.
+            </p>
         </div>
         """, unsafe_allow_html=True)
         
+        # Matriz Estratégica (Cards)
         st.markdown("### 📋 Matriz Estratégica: 50 Sugestões")
         cols = st.columns(2)
         for idx, item in enumerate(minerados):
             with cols[idx % 2]:
-                st.markdown(f'<div class="card-sugestao"><b style="color:#00ffcc;">{item["TERMO"]}</b></div>', unsafe_allow_html=True)
+                st.markdown(f"""
+                <div class="card-sugestao">
+                    <b style="color:#00ffcc;">{item['TERMO DE ELITE']}</b><br>
+                    <span style="color:#ffffff; font-size:12px;">Google Ads: Recomendado para Título 1</span>
+                </div>
+                """, unsafe_allow_html=True)
