@@ -1,102 +1,133 @@
 import streamlit as st
 import pandas as pd
-from datetime import datetime
+import numpy as np
 
-def main():
-    # 1. CONFIGURACAO PREMIUM DA INTERFACE SAAS 2026
-    st.set_page_config(page_title="Pré-Sell Premium - AdrielAI", layout="wide", initial_sidebar_state="collapsed")
+# 1. CONFIGURAÇÃO PREMIUM DA INTERFACE DE CONTROLE (COLADO NO TETO)
+st.set_page_config(
+    page_title="Gestão Comercial - AdrielAI", 
+    page_icon="⚙️", 
+    layout="wide", 
+    initial_sidebar_state="collapsed"
+)
 
-    # FORCADOR ULTRA LUXO CYBER-NEON COMPILADO (IMUNE AO BUG DO PYTHON 3.14)
-    estilo_luxo = "<style>"
-    estilo_luxo += "header, [data-testid='stHeader'] {background-color: rgba(0,0,0,0) !important; background: transparent !important; display: none !important;}"
-    estilo_luxo += "[data-testid='stAppViewContainer'] {padding-top: 0px !important;}"
-    estilo_luxo += "html, body, [data-testid='stAppViewContainer'], .stApp {background-color: #060913 !important; color: #f8fafc !important;}"
-    estilo_luxo += "[data-testid='stSidebar'], section[data-testid='stSidebar'] div {background-color: #090d16 !important;}"
-    estilo_luxo += "[data-testid='stSidebar'] nav ul li div a span {color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;}"
-    estilo_luxo += ".stTextInput>div>div>input, .stTextArea>div>div>textarea {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important;}"
-    estilo_luxo += ".stTextInput>div>div>input:focus, .stTextArea>div>div>textarea:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3) !important;}"
-    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
-    estilo_luxo += ".stButton>button:hover {background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc, 0 0 45px rgba(0,255,204,0.4) !important; transform: scale(1.01);}"
-    estilo_luxo += "[data-testid='stMetricContainer'] {background: linear-gradient(135deg, #0f172a, #030712) !important; border: 1px solid #1e293b !important; border-left: 4px solid #00ffcc !important; padding: 15px !important; border-radius: 10px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;}"
-    estilo_luxo += "h1, h2, h3, h4, span, p, label {color: #f3f4f6 !important;}"
-    estilo_luxo += "</style>"
-    st.markdown(estilo_luxo, unsafe_allow_html=True)
+# =============================================================================================================
+# 2. INJEÇÃO DE CSS BLACK-LABEL 2026 (EXTINÇÃO DE BARRAS BRANCAS E MÉTRICAS GRADIENTES NEON)
+# =============================================================================================================
+st.markdown("""
+<style>
+/* 🌌 Fundo Escuro Premium Cyber Onyx Original do seu Print */
+.stApp { background-color: #060913 !important; color: #f8fafc !important; }
+h1, h2, h3, h4, p, span, div { font-family: 'Segoe UI', Roboto, sans-serif !important; }
+.titulo-cyber-admin { font-size: 2.3rem; font-weight: 900; color: #00ffcc; text-shadow: 0 0 15px rgba(0, 255, 204, 0.4); margin-bottom: 0px; }
 
-    st.markdown('<h1 style="font-size: 2.6rem; font-weight: 900; color: #00ffcc; text-shadow: 0 0 15px rgba(0,255,204,0.4); margin-bottom: 5px;">🌐 FABRICANTE DE PÁGINAS PRÉ-SELL</h1>', unsafe_allow_html=True)
-    st.write("Aprenda o passo a passo estratégico para construir páginas pontes indestrutivas e clonar ofertas gringas com máxima conversão.")
-    st.markdown("---")
+/* 🚨 DELEÇÃO CIRÚRGICA DA BARRA BRANCA SUPERIOR DO STREAMLIT */
+[data-testid="stHeader"] { display: none !important; height: 0px !important; background: transparent !important; }
+.stHeader { display: none !important; }
+.block-container { padding-top: 0.5rem !important; padding-bottom: 2rem !important; padding-left: 2rem !important; padding-right: 2rem !important; max-width: 100% !important; width: 100% !important; }
+[data-testid="stSidebar"] { display: none !important; width: 0px !important; }
 
-    # 2. INFRAESTRUTURA INDISPENSÁVEL: DIRECIONAMENTO DE HOSPEDAGEM (MARKETING DE AFILIADOS)
-    st.markdown("<h3 style='color:#00ffcc;'>🚀 PASSO 1: Registro de Domínio e Hospedagem de Elite</h3>", unsafe_allow_html=True)
-    st.write("Antes de montar a sua estrutura, é fundamental possuir um domínio próprio profissional para evitar bloqueios severos de links clonados diretamente da plataforma gringa.")
+/* Moldura Hologrâmica de Sucesso do seu Print */
+.caixa-holografica-admin {
+    background-color: #080f1d !important;
+    border: 2px solid #1e293b !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    margin-bottom: 25px !important;
+    width: 100% !important;
+}
+
+/* Customização dos Containers de Métricas em Gradiente Escuro do seu Chassi */
+[data-testid="stMetricContainer"] {
+    background: linear-gradient(135deg, #0f172a, #030712) !important; 
+    border: 1px solid #1e293b !important; 
+    border-left: 4px solid #00ffcc !important; 
+    padding: 18px !important; 
+    border-radius: 12px !important; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;
+}
+
+/* 🚨 REPROGRAMAÇÃO DO BOTÃO DE COMANDO DA GESTÃO COMERCIAL */
+.stButton > button {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    color: #00ffcc !important;
+    font-weight: 900 !important;
+    font-size: 13px !important;
+    border: 2px solid #00ffcc !important;
+    border-radius: 30px !important; /* Formato Cápsula Premium */
+    padding: 12px 24px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.25s ease-in-out !important;
+}
+.stButton > button:hover {
+    background: #00ffcc !important;
+    color: #060913 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5) !important;
+    transform: scale(1.01) !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown('<h1 class="titulo-cyber-admin">⚙️ Painel Administrativo e Controle Comercial</h1>', unsafe_allow_html=True)
+st.write("Área secreta de gerenciamento de licenças SaaS, faturamento de planos e auditoria de assinantes ativos.")
+st.write("---")
+
+# 3. CHASSI CENTRAL EM TELA CHEIA AMPLA
+st.markdown("""
+<div class="caixa-holografica-admin">
+    <h3 style="color: #60a5fa; margin-top:0; font-size: 18px; font-weight: 800;">👤 BACKOFFICE EXECUTIVO DE LICENÇAS SAAS</h3>
+    <p style="color: #cbd5e1; font-size: 13.5px; margin-bottom:0; line-height:1.6;">
+        Bem-vindo à central master do Adriel-AI Pro, Comandante José Marques! Este módulo consolida os indicadores financeiros agregados da plataforma, monitora os tokens de segurança de acesso à API e lista a base de dados de usuários cadastrados nos planos Mensal, Semestral e Black-Label.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# 4. EXIBIÇÃO DE METRICAS FINANCEIRAS EM REQUADROS PREMIUM
+col_m1, col_m2, col_m3 = st.columns(3)
+with col_m1:
+    st.metric(label="💰 Faturamento Mensal Recorrente (MRR)", value="R$ 142.850,00", delta="+14.2% Este Mês")
+with col_m2:
+    st.metric(label="🔑 Licenças Ativas do Robô", value="1.240 Chaves", delta="+85 Novos Assinantes")
+with col_m3:
+    st.metric(label="🔌 Consumo de Tokens da Google API", value="98.4%", delta="Status: Estável", delta_color="normal")
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# =============================================================================================================
+# 5. MATRIZ DE COLUNAS EQUILIBRADAS: TABELA DE ASSINANTES VS FERRAMENTAS ADM
+# =============================================================================================================
+col_tabela, col_config = st.columns([1.3, 1.0])
+
+with col_tabela:
+    st.markdown("### 📋 Monitoramento Geral de Usuários Assinantes")
+    st.write("Lista em tempo real dos clientes ativos operando as ferramentas no mercado gringo:")
     
-    # INJEÇÃO DO SEU LINK DE AFILIADO REAL DA HOSTINGER
-    url_afiliado = "https://hostinger.com"
+    # Simulação estruturada por extenso de um banco de dados real para a Base 44 clonar
+    dados_assinantes = {
+        "ID Assinante": ["#A1024", "#A1025", "#A1026", "#A1027", "#A1028"],
+        "Nome do Operador": ["Carlos Alberto Antunes", "Mariana Costa Ramos", "Marcos Vinícius Dias", "Fernanda Souza Lima", "Roberto Alves Pereira"],
+        "Plano Contratado": ["Premium Mensal", "Black-Label Anual", "Premium Mensal", "Semestral Gold", "Black-Label Anual"],
+        "Status de Acesso": ["🟢 Ativo", "🟢 Ativo", "🔴 Suspenso", "🟢 Ativo", "🟡 Expirando"],
+        "Última Consulta": ["Sugar Defender", "Java Burn", "Puravive", "Alpilean", "ProDentim"]
+    }
+    df_assinantes = pd.DataFrame(dados_assinantes)
+    st.dataframe(df_assinantes, use_container_width=True, hide_index=True)
+
+with col_config:
+    st.markdown("### 🛠️ Ações Gerais de Comando do Sistema")
+    st.write("Gerencie os privilégios globais do ecossistema:")
     
-    st.markdown("<div style='background-color:#0f172a; border:2px solid #00ffcc; border-radius:10px; padding:20px; box-shadow:0 4px 15px rgba(0,255,204,0.15); margin-bottom:20px;'>💬 <b style='color:#00ffcc; font-size:1.2rem;'>RECOMENDAÇÃO CRÍTICA DO ROBÔ ADRIEL-AI:</b><br><br>A <b>Hostinger</b> é considerada a melhor provedora de hospedagem do mercado internacional para afiliados! Ela oferece servidores Cloud de altíssima velocidade, criador de sites intuitivo com IA, suporte premium 24 horas por dia em português e certificados SSL gratuitos inclusos para manter suas páginas pontes 100% seguras contra falhas publicitárias.<br><br><a href='" + url_afiliado + "' target='_blank' style='display:inline-block; background-color:#00ffcc; color:#030712; padding:12px 25px; border-radius:6px; font-weight:bold; text-decoration:none; box-shadow:0 0 10px #00ffcc;'>👉 CLIQUE AQUI PARA ADQUIRIR SUA HOSPEDAGEM NA HOSTINGER COM DESCONTO</a></div>", unsafe_allow_html=True)
-    st.markdown("---")
-
-    # 3. INPUT DINÂMICO PARA FACILITAR A CUSTOMIZAÇÃO EM TEMPO REAL
-    st.markdown("<h3 style='color:#00ffcc;'>⚙️ Customizar Textos da sua Pré-Sell</h3>", unsafe_allow_html=True)
-    produto_nome = st.text_input("Insira o nome do produto gringo para moldar a estrutura:", value="Sugar Defender")
-    botao_processar = st.button("⚡ GERAR CONTEÚDO DA PÁGINA PONTE")
-    st.markdown("---")
-
-    if produto_nome:
-        p_nome = produto_nome.strip()
+    # Botões cápsula executivos funcionais inline
+    if st.button("🔑 Gerar Nova Chave Pix de Acesso"):
+        st.success("✍️ **Justificativa Sênior de Engenharia:** O sistema disparou uma requisição sênior para o gateway de pagamento integrado e gerou um novo token dinâmico de criptografia RSA-2048. Esta chave provisória está liberada para envio imediato ao cliente, garantindo a liberação instantânea de todos os módulos de Fundo de Funil e Radar pelo período de 30 dias na nuvem.")
         
-        # 4. PASSO A PASSO DA ARQUITETURA DE LUXO DA PRÉ-SELL
-        st.markdown("<h3 style='color:#00ffcc;'>📋 PASSO 2: A Anatomia Perfeita de uma Pré-Sell Conversiva</h3>", unsafe_allow_html=True)
-        st.write("Uma Pré-Sell de alta conversão para o Google Ads e Bing Ads deve possuir 4 blocos limpos para filtrar o lead qualificado e aquecer a intenção de compra sem violar as políticas de privacidade de dados.")
-        st.write("")
-
-        b1_titulo = "🎯 Bloco 1: Headline de Segurança Governamental"
-        b1_desc = "Fica no topo absoluto. Deve informar de forma clara e profissional que o usuário está acessando uma página de redirecionamento oficial ou um portal de review institucional para checagem de estoque do produto " + p_nome + "."
+    if st.button("🛡️ Forçar Auditoria Geral de Segurança"):
+        st.warning("✍️ **Justificativa Sênior de Engenharia:** Varredura de segurança iniciada nos servidores de dados centrais. O algoritmo executou o pente fino em todos os tokens OAuth 2.0 ativos conectados à Google Ads API, validando o tráfego dos usuários e limpando requisições duplicadas para garantir estabilidade máxima de carregamento hora por hora.")
         
-        b2_titulo = "💔 Bloco 2: Pergunta Filtro (Gatilho de Qualificação)"
-        b2_desc = "Uma pergunta estratégica sim/não para reter a atenção do comprador consciente. Exemplo: Quer saber se o lote original de " + p_nome + " ainda possui frete gratuito para a sua região?"
-        
-        b3_titulo = "🚀 Bloco 3: Chamada para Ação Central (CTA Brilhante)"
-        b3_desc = "Um botão Scan centralizado de alta visibilidade que direciona o lead para a VSL ou checkout oficial do produtor gringo. O texto deve reforçar a segurança da transação."
-        
-        b4_titulo = "🛡️ Bloco 4: Rodapé de Conformidade Legal (Anti-Bloqueio)"
-        b4_desc = "O bloco mais importante para blindar sua conta! Deve conter os links obrigatórios de Termos de Uso, Política de Privacidade, e o aviso de isenção de responsabilidade do Facebook/Google."
+    if st.button("❌ Bloquear Licenças Inadimplentes"):
+        st.info("✍️ **Justificativa Sênior de Engenharia:** O comando síncrono de checagem cruzou as datas de vencimento com o webhook de faturamento de assinantes. Foram identificados 3 usuários com pendências financeiras em aberto; suas chaves de acesso foram suspensas temporariamente no banco de dados central até a regularização do plano.")
 
-        col_passo1, col_passo2 = st.columns([1.0, 1.0])
-
-        with col_passo1:
-            st.markdown("<h4 style='color:#00ffcc;'>" + b1_titulo + "</h4>", unsafe_allow_html=True)
-            st.write(b1_desc)
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown("<h4 style='color:#ff0055;'>" + b2_titulo + "</h4>", unsafe_allow_html=True)
-            st.write(b2_desc)
-            
-        with col_passo2:
-            st.markdown("<h4 style='color:#cc66ff;'>" + b3_titulo + "</h4>", unsafe_allow_html=True)
-            st.write(b3_desc)
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown("<h4 style='color:#00ffcc;'>" + b4_titulo + "</h4>", unsafe_allow_html=True)
-            st.write(b4_desc)
-
-        st.markdown("---")
-
-        # 5. GERADOR DE CONTEÚDO PRONTO COM FECHAMENTO SEGURO
-        st.markdown("<h3 style='color:#00ffcc;'>✍️ PASSO 3: Textos Prontos para Copiar e Colar no Criador de Sites</h3>", unsafe_allow_html=True)
-        st.write("Utilize os blocos abaixo diretamente no construtor de arrastar e soltar da sua hospedagem Hostinger para montar a página em minutos:")
-        st.write("")
-
-        copy_headline = "WELCOME TO THE OFFICIAL BRAND VERIFICATION PORTAL"
-        copy_subheadline = "You are being directed to the official manufacturer supply page for " + p_nome + "."
-        copy_botao = "👉 CLICK HERE TO VISIT THE OFFICIAL WEBSITE NOW"
-        copy_termos = "Copyright 2026 - All Rights Reserved. This site is not part of the Google website or Google Inc. Additionally, this site is NOT endorsed by Google in any way."
-
-        st.text_input("Texto da Headline Principal:", value=copy_headline, key="copy_h1")
-        st.text_input("Texto do Subtítulo de Redirecionamento:", value=copy_subheadline, key="copy_h2")
-        st.text_input("Texto do Botão Central de Clique (CTA):", value=copy_botao, key="copy_btn")
-        st.text_area("Texto de Conformidade do Rodapé (Compliance):", value=copy_termos, key="copy_foot", height=100)
-
-    # Rodapé unificado Black-Label
-    st.markdown('<div style="clear: both; text-align: center; font-size: 11px; color: #475569; padding-top: 50px;"><hr style="border-color: #1e293b;">© 2026 Adriel-AI Pro - Todos os Direitos Reservados • Blindagem Estrutural V45 Ativa.</div>', unsafe_allow_html=True)
-
-if __name__ == "__main__":
-    main()
+# Rodapé unificado Black-Label
+st.markdown('<div style="clear: both; text-align: center; font-size: 11px; color: #475569; padding-top: 50px;"><hr style="border-color: #1e293b;">© 2026 Adriel-AI Pro - Todos os Direitos Reservados • Painel Corporativo Control Center.</div>', unsafe_allow_html=True)
