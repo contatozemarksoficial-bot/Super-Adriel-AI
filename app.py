@@ -41,7 +41,7 @@ h1, h2, h3, h4, p, span, div { font-family: 'Segoe UI', Roboto, sans-serif !impo
     font-weight: 900 !important;
     font-size: 13.5px !important;
     border-radius: 30px !important; /* Formato Cápsula Premium */
-    padding: 12px 24px !important;
+    padding: 14px 28px !important;
     width: 100% !important;
     border: 2px solid #1e293b !important;
     cursor: pointer !important;
@@ -75,7 +75,7 @@ st.write("---")
 # 3. CHASSI CENTRAL EM TELA CHEIA AMPLA
 st.markdown("""
 <div class="caixa-holografica-presell">
-    <h3 style="color: #00ffcc; margin-top:0; font-size: 18px; font-weight: 800;">🌐 MÓDULO 5: REQUISITOS TÉCNICOS DE INFRAESTRUTURA</h3>
+    <h3 style="color: #00ffcc; margin-top:0; font-size: 18px; font-weight: 800;">🌐 MÓDULO 5: INSTALAÇÃO VIVA DE COMPLIANCE</h3>
     <p style="color: #cbd5e1; font-size: 13.5px; margin-bottom:0; line-height:1.6;">
         A construção de uma página ponte (Pre-Sell) ou Advertorial é o único caminho seguro para anunciar produtos das redes ClickBank e BuyGoods sem sofrer penalizações imediatas nos mecanismos de busca do Google Ads e Bing Ads. Uma infraestrutura própria garante autonomia de leilão, reduz custos por clique de curiosos e aumenta a pontuação de qualidade dos anúncios de forma extraordinária.
     </p>
@@ -86,18 +86,38 @@ st.markdown("""
 col_tut, col_infra = st.columns([1.0, 1.1])
 
 with col_tut:
-    st.markdown("### 📋 Anatomia de uma Pre-Sell de Alta Conversão")
-    st.write("Selecione os passos técnicos abaixo para abrir as diretrizes obrigatórias de montagem:")
+    st.markdown("### 🛠️ Gerador de Código Vivo de Pre-Sell")
+    st.write("Insira a oferta e fabrique a estrutura real em HTML/CSS instantaneamente:")
+    
+    prod_presell = st.text_input("Nome do Produto para Injetar no Código:", value="Sugar Defender")
     st.markdown("<br>", unsafe_allow_html=True)
     
-    if st.button("📦 Passo 1: Elementos Obrigatórios de Compliance"):
-        st.info("✍️ **Justificativa Técnica de Engenharia:** Toda página de destino internacional direcionada a leilões de alta concorrência precisa conter, no rodapé, as páginas obrigatórias de Termos de Uso, Políticas de Privacidade, Avisos Legais de Isenção de Responsabilidade (Disclaimers) e a nota explícita informando que o site não possui qualquer vínculo corporativo com o Google Inc. ou com a marca oficial do produto. A ausência desses elementos resulta em suspensão imediata por rastreamento robótico das ferramentas de compliance.")
+    # 🚨 MOTOR DE VIDA REAIS: GERAÇÃO DE CÓDIGO HTML VERDADEIRO CLONÁVEL NA HORA!
+    if st.button("🔌 CONSTRUIR CÓDIGO FONTE DA PRE-SELL VIVA"):
+        st.success("🎉 Código Fonte Gerado de Forma Legítima e Prontinho para Uso!")
         
-    if st.button("🎨 Passo 2: Estrutura Visual Limpa (Anti-Abandono)"):
-        st.info("✍️ **Justificativa Técnica de Engenharia:** O chassi visual da sua Pre-Sell deve carregar de forma instantânea em menos de 1.5 segundos. Recomenda-se utilizar um layout focado em texto limpo de autoridade, exibindo uma pergunta instigante no topo relacionada à dor do nicho (Ex: 'Antes de comprar, você sabe o segredo?'), uma foto nítida e de alta resolução do produto original e um botão central em formato de pílula chamativa direcionando o usuário qualificado direto para o checkout oficial do produtor.")
-        
-    if st.button("🔒 Passo 3: Proteção de Domínio Contra Cliques Falsos"):
-        st.info("✍️ **Justificativa Técnica de Engenharia:** Utilizar domínios genéricos compartilhados de plataformas gratuitas destrói o seu índice de confiança no leilão. Ao registrar um domínio exclusivo (Ex: 'health-official-portal.com'), você blinda a sua estrutura de anúncios, consegue instalar pixels de rastreamento avançados para inteligência de dados e impede que ferramentas concorrentes interceptem o comportamento do seu comprador final.")
+        # Estrutura HTML real que o afiliado pode colar na Hostinger
+        codigo_html_real = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{prod_presell} - Special Offer</title>
+    <style>
+        body {{ background:#050811; color:#fff; font-family:sans-serif; text-align:center; padding:50px; }}
+        .box {{ max-width:600px; margin:auto; border:2px solid #00ffcc; padding:30px; border-radius:12px; }}
+        .btn {{ display:inline-block; background:#00ffcc; color:#000; padding:15px 30px; text-decoration:none; font-weight:bold; border-radius:30px; margin-top:20px; }}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Attention: Looking For The Authentic {prod_alvo if 'prod_alvo' in locals() else prod_presell}?</h1>
+        <p>Before you buy, ensure you are ordering from the official warehouse to guarantee full refund policies.</p>
+        <a href="https://hostinger.com" class="btn">PROCEED TO OFFICIAL SITE</a>
+    </div>
+</body>
+</html>"""
+        st.write("📋 **Código Limpo para copiar e colocar no seu arquivo index.html na Hostinger:**")
+        st.code(codigo_html_real, language="html")
 
 with col_infra:
     st.markdown("### ⚡ Ativação de Servidor e Hospedagem Profissional")
@@ -119,4 +139,4 @@ with col_infra:
     """, unsafe_allow_html=True)
 
 # Rodapé unificado Black-Label
-st.markdown('<div style="clear: both; text-align: center; font-size: 11px; color: #475569; padding-top: 60px;"><hr style="border-color: #1e293b;">© 2026 Adriel-AI Pro - Todos os Direitos Reservados • Protocolo Mestre V4 Modo de Guerra.</div>', unsafe_allow_html=True)
+st.markdown('<div style="clear: both; text-align: center; font-size: 11px; color: #475569; padding-top: 50px;"><hr style="border-color: #1e293b;">© 2026 Adriel-AI Pro - Todos os Direitos Reservados • Protocolo Mestre V4 Modo de Guerra.</div>', unsafe_allow_html=True)
